@@ -6,6 +6,7 @@ class AppMap extends Component {
 
   state = {
     markers: [],
+    markerVenuesInfo: [],
     map: null,
     activeMarker: [],
     activeMarkerVenuesInfo: null,
@@ -29,7 +30,7 @@ class AppMap extends Component {
          .markers
          .forEach(marker => marker.setMap(null))
 
-    let markerProps = []
+    let markerVenuesInfo = []
     let markers = venuesInfo.map((info, index) => {
       let markerInfo = {
         key: index,
@@ -38,7 +39,7 @@ class AppMap extends Component {
         address: info.address,
         pos: info.pos
       }
-      this.markerProps.push(markerInfo)
+      this.markerVenuesInfo.push(markerInfo)
     })
 
     let marker = new this.props.google.maps.Marker({
@@ -46,7 +47,7 @@ class AppMap extends Component {
       map: this.state.map
     })
 
-    
+    this.setState({markers, markerVenuesInfo})
 
   }
 
