@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResultsList from './ResultsList.js';
 import AppMap from './AppMap.js'
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 
 

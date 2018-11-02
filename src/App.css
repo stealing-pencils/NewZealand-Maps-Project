@@ -1,32 +1,131 @@
-.App {
-  text-align: center;
-}
+/* import fonts from google fonts  */
+@import url('https://fonts.googleapis.com/css?family=Averia+Libre|Source+Serif+Pro');
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.App {
+  font-family: 'Source Serif Pro', serif;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 130px 90px 1234px 100px;
+
+  grid-template-areas:
+  "h h h h"
+  "s s s s"
+  "r r r r"
+  "f f f f";
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Averia Libre', cursive;
+  text-align: center;
+  background-color: orange;
+  grid-area: h;
+  font-size: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.map-body {
+  visibility: collapse;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.list-body {
+  background-color: tan;
+  grid-area: r;
+}
+
+footer {
+  background-color: green;
+  grid-area: f;
+}
+
+/*   Search bar   */
+.search-bar-body {
+  padding: 1% 0% 2% 2%;
+  background-color: lightblue;
+  grid-area: s;
+
+}
+
+h2 {
+  font-size: 15pt;
+  margin: 0;
+}
+
+#search-location-button {
+  width: 10%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 1.1% 0%;
+    border: none;
+}
+
+input #search {
+  font-size: 10pt;
+  padding: 1%;
+  padding-right: 20%;
+  margin-top: 0;
+  margin-right: 2%;
+}
+
+/*   Results List   */
+ol {
+  padding: 1rem;
+}
+
+.list-item {
+  font-weight: bold;
+  list-style: none;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .App {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 130px 100px 1134px 100px;
+    grid-template-areas:
+    "h h h h"
+    "s s s s"
+    "r m m m"
+    "f f f f";
   }
-  to {
-    transform: rotate(360deg);
+
+  .map-body {
+    visibility: visible;
+    background-color: pink;
+    grid-area: m;
+    position: relative;
   }
+}
+
+/*   Search bar   */
+.search-bar-body {
+  grid-area: s;
+  padding: 1% 0% 2% 2%;
+}
+
+.search-bar-body h2 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+#search-location-button {
+    width: 10%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.6% 0%;
+    border: none;
+}
+
+input {
+  font-size: 10pt;
+  padding: 0.5%;
+  padding-right: 20%;
+  margin-top: 0;
+  margin-right: 2%;
 }
