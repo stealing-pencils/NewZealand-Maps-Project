@@ -4,12 +4,23 @@ import './App.css';
 
 class AppMap extends Component {
 
+  state = {
+    map: null,
+  }
+
+  // initialize map
+  mapReady = (props, map) => {
+        // Save the map reference in state and prepare the location markers
+        this.setState({map});
+        this.updateMarkers(this.props.locations);
+    }
 
   render() {
 
 
     return (
         <Map
+        onready = {this.mapReady}
         google={this.props.google}
         style={{width: '100%', height: '100%'}}
         className={'map'}
