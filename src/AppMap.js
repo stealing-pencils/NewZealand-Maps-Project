@@ -28,8 +28,19 @@ class AppMap extends Component {
     this.state
          .markers
          .forEach(marker => marker.setMap(null))
-  }
 
+    let markerProps = []
+    let markers = venuesInfo.map((info, index) => {
+      let markerInfo = {
+        key: index,
+        id: info.id,
+        name: info.name,
+        address: info.address,
+        pos: info.pos
+      }
+      this.markerProps.push(markerInfo)
+    })
+  }
 
 
   render() {
