@@ -11,10 +11,6 @@ clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
 clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
 });
 
-var params = {
-"near": "Auckland, NZ",
-"query": "coffee"
-};
 
 
 class App extends Component {
@@ -22,12 +18,16 @@ class App extends Component {
   state = {
     venues: [],
     center: [],
-    markers: []
+    markers: [],
+    queryLocation: {
+      "near": "Auckland, NZ",
+      "query": "coffee"
+    }
   }
 
   // Requests info from foursquare
     componentDidMount() {
-      foursquare.venues.getVenues(params)
+      foursquare.venues.getVenues(this.state.queryLocation)
         .then(res=> {
           const {venues} = res.response
           const {center} = res.response.geocode.feature.geometry
