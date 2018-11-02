@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import ResultsList from './ResultsList.js';
 import AppMap from './AppMap.js'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
@@ -7,7 +8,7 @@ import './App.css';
 
 var foursquare = require('react-foursquare')({
 clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
-clientSecret: 'TQTIW2FA04GLWPHBWBCK20YFKRNZ0H25PRRCTRANBZWWUTTG'
+clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
 });
 
 var params = {
