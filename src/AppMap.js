@@ -16,10 +16,19 @@ class AppMap extends Component {
   mapReady = (props, map) => {
         // Save the map reference in state and prepare the location markers
         this.setState({map});
-        this.updateMarkers(this.props.venuesInfo);
+        this.addMarkers(this.props.venuesInfo);
     }
 
+  addMarkers = (venuesInfo) => {
+    // check there are values coming from venuesInfo props
+    if(! venuesInfo) {
+      return
+    }
 
+    this.state
+         .markers
+         .forEach(marker => marker.setMap(null))
+  }
 
 
 
