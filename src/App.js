@@ -18,7 +18,7 @@ class App extends Component {
   state = {
     venues: [],
     center: [],
-    venueInfo: [],
+    venuesInfo: [],
     queryLocation: {
       "near": "Auckland, NZ",
       "query": "coffee"
@@ -31,7 +31,7 @@ class App extends Component {
         .then(res=> {
           const {venues} = res.response
           const {center} = res.response.geocode.feature.geometry
-          const venueInfo = venues.map(venue => {
+          const venuesInfo = venues.map(venue => {
             return {
               name: venue.name,
               lat: venue.location.lat,
@@ -45,12 +45,12 @@ class App extends Component {
               pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
             }
           })
-          this.setState({venues, center, venueInfo})
+          this.setState({venues, center, venuesInfo})
         });
     }
 
   render() {
-    console.log(this.state.venueInfo)
+    console.log(this.state.venuesInfo)
     return (
       <div className="App">
 

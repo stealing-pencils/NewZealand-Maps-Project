@@ -8,7 +8,7 @@ class AppMap extends Component {
     markers: [],
     map: null,
     activeMarker: [],
-    activeMarkerVenueInfo: null,
+    activeMarkerVenuesInfo: null,
     showingInfoWindow: false
   }
 
@@ -16,7 +16,7 @@ class AppMap extends Component {
   mapReady = (props, map) => {
         // Save the map reference in state and prepare the location markers
         this.setState({map});
-        this.updateMarkers(this.props.locations);
+        this.updateMarkers(this.props.venuesInfo);
     }
 
 
