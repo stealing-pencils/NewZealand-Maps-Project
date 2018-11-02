@@ -33,20 +33,15 @@ class App extends Component {
           const venuesInfo = venues.map(venue => {
             return {
               name: venue.name,
-              lat: venue.location.lat,
-              lng: venue.location.lng,
-              location: venue.location,
-              isOpen: false,
-              isVisible: true,
               id: venue.id,
               address: venue.location.address,
-              formatted_address: venue.location.formattedAddress,
               pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
             }
           })
           this.setState({venues, center, venuesInfo})
         });
     }
+
 
   render() {
 
