@@ -5,7 +5,11 @@ import './App.css';
 class AppMap extends Component {
 
   state = {
+    markers: [],
     map: null,
+    activeMarker: [],
+    activeMarkerVenueInfo: null,
+    showingInfoWindow: false
   }
 
   // initialize map
