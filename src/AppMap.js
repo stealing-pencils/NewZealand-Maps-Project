@@ -13,7 +13,7 @@ class AppMap extends Component {
         google={this.props.google}
         style={{width: '100%', height: '100%'}}
         className={'map'}
-        zoom={14}
+        zoom={13}
         initialCenter={{
           lat: -36.848461,
           lng: 174.763336

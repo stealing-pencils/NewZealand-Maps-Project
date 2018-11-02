@@ -5,7 +5,48 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 
 
+var foursquare = require('react-foursquare')({
+clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
+clientSecret: 'TQTIW2FA04GLWPHBWBCK20YFKRNZ0H25PRRCTRANBZWWUTTG'
+});
+
+var params = {
+"near": "Auckland, NZ",
+"query": "coffee"
+};
+
+
 class App extends Component {
+
+  state = {
+    venues: [],
+    center: [],
+    markers: []
+  }
+
+  // Requests info from foursquare
+    componentDidMount() {
+      foursquare.venues.getVenues(params)
+        .then(res=> {
+          const {venues} = res.response
+          const {center} = res.response.geocode.feature.geometry
+          const markers = venues.map(venue => {
+            return {
+              name: venue.name,
+              lat: venue.location.lat,
+              lng: venue.location.lng,
+              location: venue.location,
+              isOpen: false,
+              isVisible: true,
+              id: venue.id,
+              address: venue.location.address,
+              formatted_address: venue.location.formattedAddress
+            }
+          })
+          this.setState({venues, center, markers})
+        });
+    }
+
   render() {
     return (
       <div className="App">
