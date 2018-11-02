@@ -15,7 +15,13 @@ class AppMap extends Component {
         this.updateMarkers(this.props.locations);
     }
 
+
+
+
+
   render() {
+
+
 
 
     return (
@@ -30,8 +36,8 @@ class AppMap extends Component {
           lng: 174.763336
         }}
         >
-
         </Map>
+
     )
   }
 }

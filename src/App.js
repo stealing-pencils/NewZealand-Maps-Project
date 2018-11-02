@@ -41,7 +41,8 @@ class App extends Component {
               isVisible: true,
               id: venue.id,
               address: venue.location.address,
-              formatted_address: venue.location.formattedAddress
+              formatted_address: venue.location.formattedAddress,
+              pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
             }
           })
           this.setState({venues, center, markers})
@@ -49,6 +50,7 @@ class App extends Component {
     }
 
   render() {
+    console.log(this.state.markers)
     return (
       <div className="App">
 
@@ -73,7 +75,7 @@ class App extends Component {
 
         <div className= 'map-body'>
           <AppMap
-
+          {...this.state}
           />
         </div>
 
