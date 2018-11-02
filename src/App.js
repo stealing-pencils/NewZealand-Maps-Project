@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ResultsList from './ResultsList.js';
+import AppMap from './AppMap.js'
 import './App.css';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          Eat New Zealand
         </header>
+        <div className = "search-bar-body">
+          <div className = "search-bar-title">
+            <h2>find what you fancy</h2>
+          </div>
+          <div className = 'search-field'>
+            <input
+              id="search-location-text"
+              type="search"
+              placeholder="Enter your favorite area!"
+              // value={this.state.query}
+              // onChange={(event) => this.updateQuery(event.target.value)}
+              />
+            <input id="search-location-button" type="button" value="Zoom"/>
+          </div>
+        </div>
+
+        <div className= 'map-body'>
+          <AppMap
+
+          />
+        </div>
+
+        <div className = "list-body">
+          <ResultsList
+
+          />
+        </div>
+        <footer className="App-footer">
+        </footer>
       </div>
     );
   }
 }
+
 
 export default App;
