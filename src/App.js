@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ResultsList from './ResultsList.js';
 import AppMap from './AppMap.js'
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 
 
@@ -50,7 +49,7 @@ class App extends Component {
     }
 
   render() {
-    console.log(this.state.venuesInfo)
+
     return (
       <div className="App">
 
@@ -76,6 +75,7 @@ class App extends Component {
         <div className= 'map-body'>
           <AppMap
           {...this.state}
+          venuesInfo = {this.state.venuesInfo}
           />
         </div>
 

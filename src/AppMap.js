@@ -17,10 +17,14 @@ class AppMap extends Component {
   mapReady = (props, map) => {
         // Save the map reference in state and prepare the location markers
         this.setState({map});
-        this.addMarkers(this.props.venuesInfo);
-    }
+        setTimeout(() => {this.addMarkers(this.addMarkers(this.props.venuesInfo))}, 3000);
+
+  }
+
 
   addMarkers = (venuesInfo) => {
+    console.log("got here")
+    console.log(venuesInfo)
     // check there are values coming from venuesInfo props
     if(! venuesInfo) {
       return
@@ -45,28 +49,30 @@ class AppMap extends Component {
         address: info.address,
         pos: info.pos
       }
-      this.markerVenuesInfo.push(markerInfo)
-    })
 
-    // create marker using google maps react
-    let marker = new this.props.google.maps.Marker({
-      position: venuesInfo.pos,
-      map: this.state.map
+      // this.markerVenuesInfo.push(markerInfo)
+      // create marker using google maps react
+      let marker = new this.props.google.maps.Marker({
+        position: markerVenuesInfo.pos,
+        map: this.state.map
+      })
+      return marker
     })
-
     this.setState({markers, markerVenuesInfo})
 
   }
 
 
   render() {
-
-
-
+    let activeInfo = this.state.activeMarkerVenuesInfo
+    // console.log(this.props.venuesInfo)
+    if (!this.props.loaded) {
+      return <div>Loading...</div>
+    }
 
     return (
         <Map
-        onready = {this.mapReady}
+        onReady = {this.mapReady}
         google={this.props.google}
         style={{width: '100%', height: '100%'}}
         className={'map'}
