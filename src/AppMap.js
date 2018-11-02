@@ -40,6 +40,14 @@ class AppMap extends Component {
       }
       this.markerProps.push(markerInfo)
     })
+
+    let marker = new this.props.google.maps.Marker({
+      position: venuesInfo.pos,
+      map: this.state.map
+    })
+
+    
+
   }
 
 
