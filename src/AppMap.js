@@ -81,12 +81,21 @@ class AppMap extends Component {
               });
 
        marker.addListener('click', () => {
-                infoWindow.open(this.state.map, marker);
-                marker.setAnimation(window.google.maps.Animation.BOUNCE);
-                setTimeout(() => {
-                  marker.setAnimation(null);
-                }, 1500);
-              });
+         if(this.state.showingInfoWindow){
+           // marker.infowindow.close()
+           console.log('yes its open')
+           this.setState({ showingInfoWindow : false })
+         } else {
+           this.setState({ showingInfoWindow : true })
+
+           infoWindow.open(this.state.map, marker);
+           marker.setAnimation(window.google.maps.Animation.BOUNCE);
+           setTimeout(() => {
+             marker.setAnimation(null);
+           }, 1500);
+         }
+
+        });
 
       return marker
     })
@@ -96,7 +105,6 @@ class AppMap extends Component {
 
   render() {
     window.states = this.state;
-    let activeInfo = ''
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
