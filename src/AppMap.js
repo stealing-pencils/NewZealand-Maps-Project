@@ -42,26 +42,18 @@ class AppMap extends Component {
 
           this.setState({venues, center, venuesInfo})
 
-         this.addMarkers(this.state.venuesInfo)
+          this.addMarkers(this.state.venuesInfo)
 
         });
     }
-
-
 
   // initialize map
   mapReady = (props, map) => {
         // Save the map reference in state and prepare the location markers
         this.setState({map});
-
-        console.log("at mapReady")
-
-
   }
 
-
   addMarkers = (venuesInfo) => {
-
     // check there are values coming from venuesInfo props
     if(!venuesInfo) {
       return console.log("no venue info")
@@ -70,24 +62,21 @@ class AppMap extends Component {
     // removes any markers on the page
     this.state.markers.forEach(marker => marker.setMap(null))
 
-
     // maps over markervenues to create instances for each marker and
     // separating them into an array which can be saved in the markers state
     let markers = venuesInfo.map((info, index) => {
       // create marker using google maps react
       let marker = new this.props.google.maps.Marker({
-        position: info.pos ,
+        position: info.pos,
         map: this.state.map
       })
 
       let infoWindow = new window.google.maps.InfoWindow({
                 content: `<div class="location-data">
-                  <h5>${info.name}</h5>
-
+                  <h2>${info.name}</h2>
                   <p class="location-details">
                   <strong>Address:</strong> ${info.address}<br/>
                   </p>
-
                 </div>`,
                 maxWidth: 300
               });
@@ -103,14 +92,12 @@ class AppMap extends Component {
       return marker
     })
     this.setState({markers})
-
   }
 
 
   render() {
     window.states = this.state;
     let activeInfo = ''
-    // console.log(this.props.venuesInfo)
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
