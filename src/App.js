@@ -7,6 +7,16 @@ import './App.css';
 
 class App extends Component {
 
+  state = {
+    venues: [],
+    center: [],
+    venuesInfo: [],
+    queryLocation: {
+      "near": "Auckland, NZ",
+      "query": "coffee"
+    }
+  }
+
 
   render() {
 

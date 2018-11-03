@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 
-
-
 var foursquare = require('react-foursquare')({
 clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
 clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
 });
 
+
 class AppMap extends Component {
+
 
   state = {
     markers: [],
-    markerVenuesInfo: [],
     map: null,
     activeMarker: [],
     activeMarkerVenuesInfo: null,
@@ -24,11 +23,10 @@ class AppMap extends Component {
     queryLocation: {
       "near": "Auckland, NZ",
       "query": "coffee"
+    }
   }
-}
 
-  // Requests info from foursquare
-    componentDidMount() {
+ componentDidMount() {
       foursquare.venues.getVenues(this.state.queryLocation)
         .then(res=> {
           const {venues} = res.response
@@ -38,18 +36,27 @@ class AppMap extends Component {
               name: venue.name,
               id: venue.id,
               address: venue.location.address,
-              pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
+              pos: {"lat": venue.location.lat, "lng": venue.location.lng}
             }
           })
+
           this.setState({venues, center, venuesInfo})
-          this.addMarkers(this.state.venuesInfo)
+
+         this.addMarkers(this.state.venuesInfo)
+
         });
     }
+
+
 
   // initialize map
   mapReady = (props, map) => {
         // Save the map reference in state and prepare the location markers
         this.setState({map});
+
+        console.log("at mapReady")
+
+
   }
 
 
@@ -63,18 +70,13 @@ class AppMap extends Component {
     // removes any markers on the page
     this.state.markers.forEach(marker => marker.setMap(null))
 
-    // Creates array for each mapped venue ready to be added to its corresponding
-    // state
-    // let markerVenuesInfo = []
 
     // maps over markervenues to create instances for each marker and
     // separating them into an array which can be saved in the markers state
     let markers = venuesInfo.map((info, index) => {
-      // markerVenuesInfo.push(info)
-      // console.log(markerVenuesInfo)
       // create marker using google maps react
       let marker = new this.props.google.maps.Marker({
-        position: info.pos,
+        position: info.pos ,
         map: this.state.map
       })
 
@@ -90,14 +92,13 @@ class AppMap extends Component {
                 maxWidth: 300
               });
 
-      marker.addListener('click', () => {
-               infoWindow.open(this.state.map, marker);
-               marker.setAnimation(window.google.maps.Animation.BOUNCE);
-               setTimeout(() => {
-                 marker.setAnimation(null);
-               }, 1500);
-             });
-
+       marker.addListener('click', () => {
+                infoWindow.open(this.state.map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(() => {
+                  marker.setAnimation(null);
+                }, 1500);
+              });
 
       return marker
     })
@@ -107,7 +108,8 @@ class AppMap extends Component {
 
 
   render() {
-    let activeInfo = this.state.activeMarkerVenuesInfo
+    window.states = this.state;
+    let activeInfo = ''
     // console.log(this.props.venuesInfo)
     if (!this.props.loaded) {
       return <div>Loading...</div>
