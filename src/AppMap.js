@@ -63,15 +63,42 @@ class AppMap extends Component {
     // removes any markers on the page
     this.state.markers.forEach(marker => marker.setMap(null))
 
+    // Creates array for each mapped venue ready to be added to its corresponding
+    // state
+    // let markerVenuesInfo = []
+
     // maps over markervenues to create instances for each marker and
     // separating them into an array which can be saved in the markers state
     let markers = venuesInfo.map((info, index) => {
-
+      // markerVenuesInfo.push(info)
+      // console.log(markerVenuesInfo)
       // create marker using google maps react
       let marker = new this.props.google.maps.Marker({
         position: info.pos,
         map: this.state.map
       })
+
+      let infoWindow = new window.google.maps.InfoWindow({
+                content: `<div class="location-data">
+                  <h5>${info.name}</h5>
+
+                  <p class="location-details">
+                  <strong>Address:</strong> ${info.address}<br/>
+                  </p>
+
+                </div>`,
+                maxWidth: 300
+              });
+
+      marker.addListener('click', () => {
+               infoWindow.open(this.state.map, marker);
+               marker.setAnimation(window.google.maps.Animation.BOUNCE);
+               setTimeout(() => {
+                 marker.setAnimation(null);
+               }, 1500);
+             });
+
+
       return marker
     })
     this.setState({markers})
