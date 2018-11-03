@@ -15,7 +15,6 @@ class AppMap extends Component {
     markers: [],
     map: null,
     activeMarker: [],
-    activeMarkerVenuesInfo: null,
     showingInfoWindow: false,
     venues: [],
     center: [],
