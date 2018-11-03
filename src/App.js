@@ -5,13 +5,6 @@ import AppMap from './AppMap.js'
 import './App.css';
 
 
-var foursquare = require('react-foursquare')({
-clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
-clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
-});
-
-
-
 class App extends Component {
 
   state = {
@@ -23,25 +16,6 @@ class App extends Component {
       "query": "coffee"
     }
   }
-
-  // Requests info from foursquare
-    componentDidMount() {
-      foursquare.venues.getVenues(this.state.queryLocation)
-        .then(res=> {
-          const {venues} = res.response
-          const {center} = res.response.geocode.feature.geometry
-          const venuesInfo = venues.map(venue => {
-            return {
-              name: venue.name,
-              id: venue.id,
-              address: venue.location.address,
-              pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
-            }
-          })
-          this.setState({venues, center, venuesInfo})
-        });
-    }
-
 
   render() {
 

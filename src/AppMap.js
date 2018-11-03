@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 
+
+
+var foursquare = require('react-foursquare')({
+clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
+clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
+});
+
 class AppMap extends Component {
 
   state = {
@@ -12,6 +19,24 @@ class AppMap extends Component {
     activeMarkerVenuesInfo: null,
     showingInfoWindow: false
   }
+
+  // Requests info from foursquare
+    componentDidMount() {
+      foursquare.venues.getVenues(this.state.queryLocation)
+        .then(res=> {
+          const {venues} = res.response
+          const {center} = res.response.geocode.feature.geometry
+          const venuesInfo = venues.map(venue => {
+            return {
+              name: venue.name,
+              id: venue.id,
+              address: venue.location.address,
+              pos: `{"lat": ${venue.location.lat}, "lng": ${venue.location.lng}}`
+            }
+          })
+          this.setState({venues, center, venuesInfo})
+        });
+    }
 
   // initialize map
   mapReady = (props, map) => {
