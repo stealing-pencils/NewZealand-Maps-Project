@@ -7,15 +7,6 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-    venues: [],
-    center: [],
-    venuesInfo: [],
-    queryLocation: {
-      "near": "Auckland, NZ",
-      "query": "coffee"
-    }
-  }
 
   render() {
 
@@ -44,7 +35,6 @@ class App extends Component {
         <div className= 'map-body'>
           <AppMap
           {...this.state}
-          venuesInfo = {this.state.venuesInfo}
           />
         </div>
 

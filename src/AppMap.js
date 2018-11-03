@@ -17,8 +17,15 @@ class AppMap extends Component {
     map: null,
     activeMarker: [],
     activeMarkerVenuesInfo: null,
-    showingInfoWindow: false
+    showingInfoWindow: false,
+    venues: [],
+    center: [],
+    venuesInfo: [],
+    queryLocation: {
+      "near": "Auckland, NZ",
+      "query": "coffee"
   }
+}
 
   // Requests info from foursquare
     componentDidMount() {
