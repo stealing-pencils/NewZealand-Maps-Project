@@ -42,6 +42,7 @@ class AppMap extends Component {
             }
           })
           this.setState({venues, center, venuesInfo})
+          this.addMarkers(this.state.venuesInfo)
         });
     }
 
