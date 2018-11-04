@@ -86,6 +86,7 @@ class App extends Component {
           this.setState({ activeMarkerInfo : info })
         }
       })
+      // updates information for infowindow
       console.log(this.state.activeMarkerInfo)
       this.setState({ showingInfoWindow: true, activeMarker: marker })
     }
@@ -95,10 +96,8 @@ class App extends Component {
       if(!venuesInfo) {
         return console.log("no venue info")
       }
-
       // removes any markers on the page
       this.state.markers.forEach(marker => marker.setMap(null))
-
       // maps over markervenues to create instances for each marker and
       // separating them into an array which can be saved in the markers state
       let markers = venuesInfo.map((info, index) => {
@@ -122,7 +121,6 @@ class App extends Component {
          //       marker.setAnimation(null);
          //     }, 1500);
          //  });
-
         return marker
       })
       this.setState({markers})
@@ -131,15 +129,7 @@ class App extends Component {
 
   render() {
 
-    if (!this.props.loaded) {
-      return <div>Loading...</div>
-    }
     // window.states = this.state;
-
-    if (!this.props.loaded) {
-      return <div>Loading...</div>
-    }
-
     return (
       <div className="App">
 
@@ -155,8 +145,6 @@ class App extends Component {
               id="search-location-text"
               type="search"
               placeholder="Enter your favorite area!"
-              // value={this.state.query}
-              // onChange={(event) => this.updateQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
           </div>
