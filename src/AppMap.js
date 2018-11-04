@@ -15,7 +15,8 @@ class AppMap extends Component {
   state = {
     markers: [],
     map: null,
-    activeMarker: null,
+    activeMarker: [],
+    activeMarkerInfo: {},
     showingInfoWindow: false,
     venues: [],
     center: [],
@@ -54,11 +55,30 @@ class AppMap extends Component {
         this.setState({map});
   }
 
-
-  closeInfoWindows = (marker) => {
-    this.setState({ showingInfoWindow : false })
-    this.setState({ activeMarker : null})
+  closeInfoWindow = () => {
+    this.setState({ showingInfoWindow: false, activeMarker: null})
   }
+
+  onClickMarker = (marker, e) => {
+    console.log(marker)
+    this.closeInfoWindow()
+
+    this.state.venuesInfo.forEach(info => {
+      if(info.id === marker.id) {
+        this.setState({ activeMarkerInfo : info })
+      }
+    })
+    console.log(this.state.activeMarkerInfo)
+    this.setState({ showingInfoWindow: true, activeMarker: marker })
+  }
+  // closeInfoWindows = () => {
+  //   let markerInfoWindows = this.state.markers.map((marker) => {
+  //     marker.isOpen = false
+  //     return marker
+  //   })
+  //   this.setState({ markers: Object.assign(this.state.markers, markerInfoWindows)})
+  // }
+
 
 
   addMarkers = (venuesInfo) => {
@@ -77,34 +97,33 @@ class AppMap extends Component {
       let marker = new this.props.google.maps.Marker({
         position: info.pos,
         map: this.state.map,
-        id: info.id,
+        id: info.id
       })
 
+      marker.addListener('click', () => {
+        this.onClickMarker(marker, null)
+      })
 
-      let infoWindow = new this.props.google.maps.InfoWindow({
-                content: `<div class="location-data">
-                  <h2>${info.name}</h2>
-                  <p class="location-details">
-                  <strong>Address:</strong> ${info.address}<br/>
-                  </p>
-                </div>`,
-                maxWidth: 300
-              });
+      //
+      // let infoWindow = new this.props.google.maps.InfoWindow({
+      //           content: `<div class="location-data">
+      //             <h2>${info.name}</h2>
+      //             <p class="location-details">
+      //             <strong>Address:</strong> ${info.address}<br/>
+      //             </p>
+      //           </div>`,
+      //           maxWidth: 300
+      //         });
 
-       this.closeInfoWindows()
-
-       marker.addListener('click', () => {
-         if (this.showingInfoWindow = true) {
-           this.closeInfoWindows(marker)
-         }
-         this.setState({activeMarker : marker})
-          infoWindow.open(this.state.map, this.state.activeMarker);
-          this.setState({ showingInfoWindow : true })
-           marker.setAnimation(window.google.maps.Animation.BOUNCE);
-           setTimeout(() => {
-             marker.setAnimation(null);
-           }, 1500);
-        });
+       // marker.addListener('click', () => {
+       //    infoWindow.open(this.state.map, marker);
+       //    console.log(marker)
+       //     // this.setState({ markers : Object.assign(this.state.markers, marker)})
+       //     marker.setAnimation(window.google.maps.Animation.BOUNCE);
+       //     setTimeout(() => {
+       //       marker.setAnimation(null);
+       //     }, 1500);
+       //  });
 
       return marker
     })
@@ -113,7 +132,10 @@ class AppMap extends Component {
 
 
   render() {
+
+    console.log(this.state.venuesInfo)
     window.states = this.state;
+
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
@@ -130,8 +152,20 @@ class AppMap extends Component {
           lat: -36.848461,
           lng: 174.763336
         }}
+        onClick = {this.closeInfoWindow}
         >
-
+          <InfoWindow
+            marker = {this.state.activeMarker}
+            visible = {this.state.showingInfoWindow}
+            onClose = {this.closeInfoWindow}
+          >
+            <div className="infoWindow-content">
+              <h2>{this.state.activeMarkerInfo.name}</h2>
+              <p className="location-details">
+              <strong>Address:</strong> {this.state.activeMarkerInfo.address}<br/>
+              </p>
+            </div>
+          </InfoWindow>
         </Map>
 
       </div>
@@ -139,7 +173,6 @@ class AppMap extends Component {
     )
   }
 }
-
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
 })(AppMap)
