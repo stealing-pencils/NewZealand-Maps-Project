@@ -66,6 +66,7 @@ class App extends Component {
                this.setState({ activeMarkerInfo: info,
                  showingInfoWindow: true,
                  activeMarker: marker})
+                 this.animateMarker(marker)
              }
            })
          }
