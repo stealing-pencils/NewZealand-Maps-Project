@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 import ResultsList from './ResultsList.js';
 
@@ -15,8 +15,8 @@ class AppMap extends Component {
   state = {
     markers: [],
     map: null,
-    activeMarker: [],
-    activeMarkerInfo: {},
+    activeMarker: {},
+    activeMarkerInfo: [],
     showingInfoWindow: false,
     venues: [],
     center: [],
@@ -38,7 +38,6 @@ class AppMap extends Component {
               id: venue.id,
               address: venue.location.address,
               pos: {"lat": venue.location.lat, "lng": venue.location.lng}
-
             }
           })
 
@@ -59,7 +58,7 @@ class AppMap extends Component {
     this.setState({ showingInfoWindow: false, activeMarker: null})
   }
 
-  onClickMarker = (marker, e) => {
+  onClickMarker = (marker) => {
     console.log(marker)
     this.closeInfoWindow()
 
@@ -71,15 +70,6 @@ class AppMap extends Component {
     console.log(this.state.activeMarkerInfo)
     this.setState({ showingInfoWindow: true, activeMarker: marker })
   }
-  // closeInfoWindows = () => {
-  //   let markerInfoWindows = this.state.markers.map((marker) => {
-  //     marker.isOpen = false
-  //     return marker
-  //   })
-  //   this.setState({ markers: Object.assign(this.state.markers, markerInfoWindows)})
-  // }
-
-
 
   addMarkers = (venuesInfo) => {
     // check there are values coming from venuesInfo props
@@ -101,7 +91,7 @@ class AppMap extends Component {
       })
 
       marker.addListener('click', () => {
-        this.onClickMarker(marker, null)
+        this.onClickMarker(marker)
       })
 
       //
@@ -141,7 +131,6 @@ class AppMap extends Component {
     }
 
     return (
-      <div>
         <Map
         onReady = {this.mapReady}
         google={this.props.google}
@@ -167,9 +156,6 @@ class AppMap extends Component {
             </div>
           </InfoWindow>
         </Map>
-
-      </div>
-
     )
   }
 }
