@@ -58,7 +58,14 @@ class App extends Component {
 
     logResultsListClick = (result) => {
        console.log(result)
+       this.state.markers.forEach((marker => {
+         if(marker.id === result.id) {
+           this.closeInfoWindow()
+           this.setState({ showingInfoWindow: true, activeMarker: marker})
+         }
+       }))
     }
+
 
     closeInfoWindow = () => {
       this.state.activeMarker &&
@@ -103,7 +110,6 @@ class App extends Component {
         marker.addListener('click', () => {
           this.onClickMarker(marker)
         })
-
         //
         // let infoWindow = new this.props.google.maps.InfoWindow({
         //           content: `<div class="location-data">
@@ -136,7 +142,7 @@ class App extends Component {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-
+    console.log(this.state.markers)
     window.states = this.state;
 
     if (!this.props.loaded) {
