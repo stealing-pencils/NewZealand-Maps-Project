@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
+import ResultsList from './ResultsList.js';
+
 
 var foursquare = require('react-foursquare')({
 clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
@@ -10,11 +12,10 @@ clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
 
 class AppMap extends Component {
 
-
   state = {
     markers: [],
     map: null,
-    activeMarker: [],
+    activeMarker: null,
     showingInfoWindow: false,
     venues: [],
     center: [],
@@ -36,6 +37,7 @@ class AppMap extends Component {
               id: venue.id,
               address: venue.location.address,
               pos: {"lat": venue.location.lat, "lng": venue.location.lng}
+
             }
           })
 
@@ -52,6 +54,13 @@ class AppMap extends Component {
         this.setState({map});
   }
 
+
+  closeInfoWindows = (marker) => {
+    this.setState({ showingInfoWindow : false })
+    this.setState({ activeMarker : null})
+  }
+
+
   addMarkers = (venuesInfo) => {
     // check there are values coming from venuesInfo props
     if(!venuesInfo) {
@@ -67,10 +76,12 @@ class AppMap extends Component {
       // create marker using google maps react
       let marker = new this.props.google.maps.Marker({
         position: info.pos,
-        map: this.state.map
+        map: this.state.map,
+        id: info.id,
       })
 
-      let infoWindow = new window.google.maps.InfoWindow({
+
+      let infoWindow = new this.props.google.maps.InfoWindow({
                 content: `<div class="location-data">
                   <h2>${info.name}</h2>
                   <p class="location-details">
@@ -80,21 +91,19 @@ class AppMap extends Component {
                 maxWidth: 300
               });
 
-       marker.addListener('click', () => {
-         if(this.state.showingInfoWindow){
-           // marker.infowindow.close()
-           console.log('yes its open')
-           this.setState({ showingInfoWindow : false })
-         } else {
-           this.setState({ showingInfoWindow : true })
+       this.closeInfoWindows()
 
-           infoWindow.open(this.state.map, marker);
+       marker.addListener('click', () => {
+         if (this.showingInfoWindow = true) {
+           this.closeInfoWindows(marker)
+         }
+         this.setState({activeMarker : marker})
+          infoWindow.open(this.state.map, this.state.activeMarker);
+          this.setState({ showingInfoWindow : true })
            marker.setAnimation(window.google.maps.Animation.BOUNCE);
            setTimeout(() => {
              marker.setAnimation(null);
            }, 1500);
-         }
-
         });
 
       return marker
@@ -110,6 +119,7 @@ class AppMap extends Component {
     }
 
     return (
+      <div>
         <Map
         onReady = {this.mapReady}
         google={this.props.google}
@@ -121,7 +131,10 @@ class AppMap extends Component {
           lng: 174.763336
         }}
         >
+
         </Map>
+
+      </div>
 
     )
   }
