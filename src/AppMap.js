@@ -55,11 +55,13 @@ class AppMap extends Component {
   }
 
   closeInfoWindow = () => {
+    this.state.activeMarker && 
     this.setState({ showingInfoWindow: false, activeMarker: null})
   }
 
   onClickMarker = (marker) => {
     console.log(marker)
+
     this.closeInfoWindow()
 
     this.state.venuesInfo.forEach(info => {
@@ -68,6 +70,7 @@ class AppMap extends Component {
       }
     })
     console.log(this.state.activeMarkerInfo)
+    // marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
     this.setState({ showingInfoWindow: true, activeMarker: marker })
   }
 
@@ -87,6 +90,7 @@ class AppMap extends Component {
       let marker = new this.props.google.maps.Marker({
         position: info.pos,
         map: this.state.map,
+        animation: this.props.google.maps.Animation.DROP,
         id: info.id
       })
 
