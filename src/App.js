@@ -42,11 +42,8 @@ class App extends Component {
                 pos: {"lat": venue.location.lat, "lng": venue.location.lng}
               }
             })
-
             this.setState({venues, center, venuesInfo})
-
             this.addMarkers(this.state.venuesInfo)
-
           });
       }
 
@@ -60,8 +57,14 @@ class App extends Component {
        console.log(result)
        this.state.markers.forEach((marker => {
          if(marker.id === result.id) {
-           this.closeInfoWindow()
-           this.setState({ showingInfoWindow: true, activeMarker: marker})
+
+           this.state.venuesInfo.forEach(info => {
+             if(info.id === marker.id) {
+               this.setState({ activeMarkerInfo : info })
+               this.closeInfoWindow()
+               this.setState({ showingInfoWindow: true, activeMarker: marker})
+             }
+           })
          }
        }))
     }
