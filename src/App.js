@@ -191,7 +191,7 @@ class App extends Component {
 
         <div className = "list-body">
           <ResultsList
-
+            {...this.state}
           />
         </div>
         <footer className="App-footer">
