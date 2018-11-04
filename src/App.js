@@ -53,40 +53,40 @@ class App extends Component {
           this.setState({map});
     }
 
+    // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
        console.log(result)
+       // maps over markers to find the correct marker
        this.state.markers.forEach((marker => {
          if(marker.id === result.id) {
-
+           // then matches up the venue info to update the infowindow
            this.state.venuesInfo.forEach(info => {
              if(info.id === marker.id) {
-               this.setState({ activeMarkerInfo : info })
                this.closeInfoWindow()
-               this.setState({ showingInfoWindow: true, activeMarker: marker})
+               this.setState({ activeMarkerInfo: info,
+                 showingInfoWindow: true,
+                 activeMarker: marker})
              }
            })
          }
        }))
     }
 
-
-    closeInfoWindow = () => {
+    // If any marker infowindows are open this will close them all
+    closeInfoWindow = (marker) => {
       this.state.activeMarker &&
       this.setState({ showingInfoWindow: false, activeMarker: null})
     }
 
+    // Opens infoWindow once marker is clicked
     onClickMarker = (marker) => {
-      console.log(marker)
-
-      this.closeInfoWindow()
-
+      this.closeInfoWindow(marker)
       this.state.venuesInfo.forEach(info => {
         if(info.id === marker.id) {
           this.setState({ activeMarkerInfo : info })
         }
       })
       console.log(this.state.activeMarkerInfo)
-      // marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
       this.setState({ showingInfoWindow: true, activeMarker: marker })
     }
 
@@ -113,17 +113,6 @@ class App extends Component {
         marker.addListener('click', () => {
           this.onClickMarker(marker)
         })
-        //
-        // let infoWindow = new this.props.google.maps.InfoWindow({
-        //           content: `<div class="location-data">
-        //             <h2>${info.name}</h2>
-        //             <p class="location-details">
-        //             <strong>Address:</strong> ${info.address}<br/>
-        //             </p>
-        //           </div>`,
-        //           maxWidth: 300
-        //         });
-
          // marker.addListener('click', () => {
          //    infoWindow.open(this.state.map, marker);
          //    console.log(marker)
@@ -145,8 +134,7 @@ class App extends Component {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-    console.log(this.state.markers)
-    window.states = this.state;
+    // window.states = this.state;
 
     if (!this.props.loaded) {
       return <div>Loading...</div>
