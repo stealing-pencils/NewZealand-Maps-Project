@@ -21,7 +21,7 @@ class ResultsList extends Component {
             <li
             key = {index}
             className = "list-item"
-            // onClick = {() => this.props.logResultsListClick(result)}
+            onClick = {() => this.props.logResultsListClick(result)}
             >
               <p>{result.name}</p>
             </li>

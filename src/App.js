@@ -56,6 +56,10 @@ class App extends Component {
           this.setState({map});
     }
 
+    logResultsListClick = (result) => {
+       console.log(result)
+    }
+
     closeInfoWindow = () => {
       this.state.activeMarker &&
       this.setState({ showingInfoWindow: false, activeMarker: null})
@@ -192,6 +196,7 @@ class App extends Component {
         <div className = "list-body">
           <ResultsList
             {...this.state}
+            logResultsListClick = {this.logResultsListClick}
           />
         </div>
         <footer className="App-footer">
