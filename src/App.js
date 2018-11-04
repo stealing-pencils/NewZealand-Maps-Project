@@ -75,11 +75,11 @@ class App extends Component {
     // If any marker infowindows are open this will close them all
     closeInfoWindow = () => {
       this.state.activeMarker &&
-      this.state.markers.forEach(marker => marker.setAnimation(null))
       this.setState({ showingInfoWindow: false, activeMarker: null})
     }
 
     animateMarker = (marker) => {
+      this.state.markers.forEach(marker => marker.setAnimation(null))
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
     }
     // Opens infoWindow once marker is clicked
