@@ -61,17 +61,19 @@ class App extends Component {
     // )
 
     updateQuery = (query) => {
-      this.setState({ query : query },_=> {
-        this.userQuery(query)
-      })
+      if(query) {
+        this.setState({ query : query },_=> {
+          this.userQuery(query)
+        })
+      }
     }
+
 
     userQuery = (query) => {
       this.state.venuesInfo.map(venue => {
         const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
         const userQueryMarker = this.state.markers.find(marker => marker.id === venue.id)
         if(queryMatch) {
-          // console.log(venue)
           // this.logResultsListClick(venue)
           this.setState({ filteredVenues : venue })
         } else {
