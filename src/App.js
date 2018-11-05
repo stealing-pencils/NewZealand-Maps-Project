@@ -15,6 +15,7 @@ class App extends Component {
 
 
     state = {
+      query: '',
       markers: [],
       map: null,
       activeMarker: {},
@@ -53,6 +54,10 @@ class App extends Component {
           this.setState({map});
     }
 
+    updateQuery = (query ) => {
+      this.setState({ query : query },_=> {
+      })
+    }
     // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
        console.log(result)
@@ -114,26 +119,9 @@ class App extends Component {
           animation: this.props.google.maps.Animation.DROP,
           id: info.id
         })
-
         marker.addListener('click', () => {
           this.onClickMarker(marker)
-
-            // setTimeout(() => {
-            //   marker.setAnimation(null);
-            // }, 1500);
-
-
-
         })
-         // marker.addListener('click', () => {
-         //    infoWindow.open(this.state.map, marker);
-         //    console.log(marker)
-         //     // this.setState({ markers : Object.assign(this.state.markers, marker)})
-         //     marker.setAnimation(window.google.maps.Animation.BOUNCE);
-         //     setTimeout(() => {
-         //       marker.setAnimation(null);
-         //     }, 1500);
-         //  });
         return marker
       })
       this.setState({markers})
@@ -141,7 +129,7 @@ class App extends Component {
 
 
   render() {
-
+    console.log(this.state.query)
     // window.states = this.state;
     return (
       <div className="App">
@@ -158,6 +146,8 @@ class App extends Component {
               id="search-location-text"
               type="search"
               placeholder="Enter your favorite area!"
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
           </div>
