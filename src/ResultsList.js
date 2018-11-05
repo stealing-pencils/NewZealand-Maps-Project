@@ -5,6 +5,14 @@ import './App.css';
 
 class ResultsList extends Component {
 
+  state = {
+    query: ''
+  }
+
+  updateQuery = (query ) => {
+    this.setState({ query : query },_=> {
+    })
+  }
 
   render() {
     return (
