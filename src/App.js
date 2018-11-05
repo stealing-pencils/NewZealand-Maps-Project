@@ -69,15 +69,18 @@ class App extends Component {
     userQuery = (query) => {
       this.state.venuesInfo.map(venue => {
         const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
-        const marker = this.state.markers.find(marker => marker.id === venue.id)
+        const userQueryMarker = this.state.markers.find(marker => marker.id === venue.id)
         if(queryMatch) {
-          console.log(venue)
+          // console.log(venue)
+          // this.logResultsListClick(venue)
+          this.setState({ filteredVenues : venue })
         } else {
           console.log("no match")
         }
-        return marker
-
+        return userQueryMarker
       })
+      console.log(this.state.filteredVenues)
+
     }
 
 
