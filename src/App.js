@@ -27,7 +27,9 @@ class App extends Component {
       queryLocation: {
         "near": "Auckland, NZ",
         "query": "coffee"
-      }
+      },
+      locationNames: [],
+      filteredVenues: []
     }
 
    componentDidMount() {
@@ -54,10 +56,32 @@ class App extends Component {
           this.setState({map});
     }
 
-    updateQuery = (query ) => {
+    // updateQuery = (query) => (
+    //   this.setState({ query : query })
+    // )
+
+    updateQuery = (query) => {
       this.setState({ query : query },_=> {
+        this.userQuery(query)
       })
     }
+
+    userQuery = (query) => {
+      this.state.venuesInfo.map(venue => {
+        const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
+        const marker = this.state.markers.find(marker => marker.id === venue.id)
+        if(queryMatch) {
+          console.log(venue)
+        } else {
+          console.log("no match")
+        }
+        return marker
+
+      })
+    }
+
+
+
     // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
        console.log(result)
@@ -129,7 +153,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.query)
+
     // window.states = this.state;
     return (
       <div className="App">
