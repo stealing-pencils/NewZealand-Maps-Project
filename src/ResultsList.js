@@ -5,7 +5,11 @@ import './App.css';
 
 class ResultsList extends Component {
 
+
   render() {
+
+    // console.log(this.props.filteredVenues)
+
     return (
       <div className= 'list-body'>
         <header className = 'results-header-body'>
@@ -17,6 +21,7 @@ class ResultsList extends Component {
         </header>
         <ol className = "search-results-body">
           {this.props.venuesInfo && this.props.venuesInfo.map((result, index) => (
+
             <li
             key = {index}
             className = "list-item"
