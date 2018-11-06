@@ -20,7 +20,11 @@ class ResultsList extends Component {
 //   })
 // }
 
+
+
+
   render() {
+
 
     return (
       <div className= 'list-body'>
@@ -36,16 +40,17 @@ class ResultsList extends Component {
           {this.props.filteredVenues && this.props.filteredVenues.map((result, index) => {
 
 
-               return <li
+               return result.address && <li
                  key = {index}
                  className = "list-item"
+
                  onClick = {() => this.props.logResultsListClick(result)}
                  >
-                  <p>{result.name}</p>
-                 </li>
+                   <p>{result.name}</p>
+                  </li>
 
+                }
 
-          }
         )}
 
         </ol>

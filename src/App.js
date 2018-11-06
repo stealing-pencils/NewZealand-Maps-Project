@@ -41,6 +41,7 @@ class App extends Component {
                 name: venue.name,
                 id: venue.id,
                 address: venue.location.address,
+                formattedAddress : venue.location.formattedAddress,
                 pos: {"lat": venue.location.lat, "lng": venue.location.lng},
                 visibility: true
               }
@@ -73,7 +74,7 @@ class App extends Component {
           }
           return queryMatch
         })
-        
+
         this.setState({
         filteredVenues : matchingVenues,
         query : query })
@@ -84,7 +85,7 @@ class App extends Component {
     //
     // // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
-       console.log(result)
+       // console.log(result)
        // maps over markers to find the correct marker
        this.state.markers.forEach((marker => {
          if(marker.id === result.id) {
@@ -122,7 +123,7 @@ class App extends Component {
         }
       })
       // updates information for infowindow
-      console.log(this.state.activeMarkerInfo)
+      // console.log(this.state.activeMarkerInfo)
       this.setState({ showingInfoWindow: true, activeMarker: marker })
     }
 
@@ -153,7 +154,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.venues)
+    // console.log(this.state.venues)
 
     // window.states = this.state;
     return (
