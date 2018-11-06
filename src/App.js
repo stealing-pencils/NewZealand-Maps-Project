@@ -37,17 +37,20 @@ class App extends Component {
             const {venues} = res.response
             const {center} = res.response.geocode.feature.geometry
             const venuesInfo = venues.map(venue => {
-              return {
-                name: venue.name,
-                id: venue.id,
-                address: venue.location.address,
-                formattedAddress : venue.location.formattedAddress,
-                pos: {"lat": venue.location.lat, "lng": venue.location.lng},
-                visibility: true
+              if(venue.location.address) {
+                return {
+                  name: venue.name,
+                  id: venue.id,
+                  address: venue.location.address,
+                  formattedAddress : venue.location.formattedAddress,
+                  pos: {"lat": venue.location.lat, "lng": venue.location.lng},
+                  visibility: true
+                }
               }
+              return venue
             })
             this.setState({venues, center, venuesInfo, filteredVenues: venuesInfo})
-            this.addMarkers(this.state.venuesInfo)
+            this.addMarkers(this.state.filteredVenues)
           });
       }
 
@@ -81,11 +84,8 @@ class App extends Component {
       }
 
 
-
-    //
     // // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
-       // console.log(result)
        // maps over markers to find the correct marker
        this.state.markers.forEach((marker => {
          if(marker.id === result.id) {
@@ -154,7 +154,7 @@ class App extends Component {
 
 
   render() {
-    // console.log(this.state.venues)
+    console.log(this.state.filteredVenues)
 
     // window.states = this.state;
     return (
