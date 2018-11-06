@@ -56,35 +56,52 @@ class App extends Component {
     }
 
     inputQuery = (query) => {
-      this.setState({ query })
-    }
-
-    userQuery = () => {
-      if(this.state.query) {
-        let venues = this.state.venuesInfo.filter(venue =>
-          venue.name.toLowerCase().includes(this.state.query.toLowerCase())
-        )
-      console.log(venues)
-      return venues
-      }
-      return this.state.venuesInfo
-    }
-
-
-    updateQuery = (query) => {
-      this.setState({ query : query })
-      this.state.venuesInfo.map(venue => {
-        if(venue.name.toLowerCase().includes(query.toLowerCase())) {
-          console.log(venue.name)
-          this.setState({ filteredVenues : venue.name })
-          // return venue.name
-        } else {
-          // this.setState({ filteredVenues : })
-          console.log("no match")
-        }
-        return venue
+      this.setState({ query },_=>{
+        this.userQuery(query)
       })
     }
+
+    userQuery = (query) => {
+      if(this.state.query) {
+        let matchingVenues = this.state.venuesInfo.filter(venue => {
+          const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
+          this.state.markers.forEach(marker => {
+            if(marker.id === venue.id) {
+            }
+            if(!queryMatch) {
+              marker.setMap(null)
+              marker.visibility = false
+            } else {
+              marker.setMap(this.state.map)
+              marker.visiblity = true
+            }
+          })
+          return queryMatch
+        })
+        this.setState({
+        filteredVenues : matchingVenues,
+        query : query })
+        console.log(this.state.filteredVenues)
+      }}
+
+    // this.setState({ filteredVenues : matchingVenues })
+
+
+    //
+    // updateQuery = (query) => {
+    //   this.setState({ query : query })
+    //   this.state.venuesInfo.map(venue => {
+    //     if(venue.name.toLowerCase().includes(query.toLowerCase())) {
+    //       console.log(venue.name)
+    //       this.setState({ filteredVenues : venue.name })
+    //       // return venue.name
+    //     } else {
+    //       // this.setState({ filteredVenues : })
+    //       console.log("no match")
+    //     }
+    //     return venue
+    //   })
+    // }
     //     // console.log(foundMatch)
     //     const updateMarker = this.state.markers.find(marker => marker.id === venue.id)
     //     if(foundMatch){
@@ -186,6 +203,7 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.filteredVenues)
 
     // window.states = this.state;
     return (
@@ -204,7 +222,7 @@ class App extends Component {
               type="search"
               placeholder="Enter your favorite area!"
               // value={this.state.query}
-              onChange={(event) => this.updateQuery(event.target.value)}
+              onChange={(event) => this.inputQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
           </div>
