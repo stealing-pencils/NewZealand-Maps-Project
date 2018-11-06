@@ -15,7 +15,6 @@ class App extends Component {
 
 
     state = {
-      query: '',
       markers: [],
       map: null,
       activeMarker: {},
@@ -28,7 +27,7 @@ class App extends Component {
         "near": "Auckland, NZ",
         "query": "coffee"
       },
-      locationNames: [],
+      query: '',
       filteredVenues: []
     }
 
@@ -56,29 +55,63 @@ class App extends Component {
           this.setState({map});
     }
 
-    // updateQuery = (query) => (
-    //   this.setState({ query : query })
-    // )
+    inputQuery = (query) => {
+      this.setState({ query })
+    }
+
+    userQuery = () => {
+      if(this.state.query) {
+        let venues = this.state.venuesInfo.filter(venue =>
+          venue.name.toLowerCase().includes(this.state.query.toLowerCase())
+        )
+      console.log(venues)
+      return venues
+      }
+      return this.state.venuesInfo
+    }
+
 
     updateQuery = (query) => {
-      this.setState({ query : query },_=> {
-        this.userQuery(query)
-      })
-    }
-
-    userQuery = (query) => {
+      this.setState({ query : query })
       this.state.venuesInfo.map(venue => {
-        const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
-        const userQueryMarker = this.state.markers.find(marker => marker.id === venue.id)
-        if(queryMatch) {
-          console.log(venue)
-          this.logResultsListClick(venue)
+        if(venue.name.toLowerCase().includes(query.toLowerCase())) {
+          console.log(venue.name)
+          this.setState({ filteredVenues : venue.name })
+          // return venue.name
         } else {
+          // this.setState({ filteredVenues : })
           console.log("no match")
         }
-        return userQueryMarker
+        return venue
       })
     }
+    //     // console.log(foundMatch)
+    //     const updateMarker = this.state.markers.find(marker => marker.id === venue.id)
+    //     if(foundMatch){
+    //       // this.closeInfoWindow()
+    //       this.setState({ activeMarker : venue })
+    //       this.setState({ showingInfoWindow : true })
+    //     } else {
+    //       this.setState({ activeMarker : {} })
+    //       this.closeInfoWindow()
+    //       // this.setState({ showingInfoWindow : false })
+    //     }
+    //     return updateMarker
+    //   })
+    // }
+
+    //   this.state.venuesInfo.map(venue => {
+    //     const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
+    //     const userQueryMarker = this.state.markers.find(marker => marker.id === venue.id)
+    //     if(queryMatch) {
+    //       console.log(venue)
+    //       this.logResultsListClick(venue)
+    //     } else {
+    //       console.log("no match")
+    //     }
+    //     return userQueryMarker
+    //   })
+    // }
 
 
 
@@ -170,7 +203,7 @@ class App extends Component {
               id="search-location-text"
               type="search"
               placeholder="Enter your favorite area!"
-              value={this.state.query}
+              // value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
