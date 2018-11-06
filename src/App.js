@@ -42,7 +42,7 @@ class App extends Component {
                   name: venue.name,
                   id: venue.id,
                   address: venue.location.address,
-                  formattedAddress : venue.location.formattedAddress,
+                  formattedAddress: venue.location.formattedAddress,
                   pos: {"lat": venue.location.lat, "lng": venue.location.lng},
                   visibility: true
                 }
@@ -59,6 +59,13 @@ class App extends Component {
           // Save the map reference in state and prepare the location markers
           this.setState({map});
     }
+
+    // refactorAddress = () => {
+    //   this.state.venuesInfo.formattedAddress.map(addressLine => {
+    //     addressLine.toString()
+    //     return addressLine
+    //   })
+    // }
 
     updateQuery = (query) => {
       this.setState({query});
@@ -83,14 +90,13 @@ class App extends Component {
         query : query })
       }
 
-
     // // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
        // maps over markers to find the correct marker
        this.state.markers.forEach((marker => {
          if(marker.id === result.id) {
            // then matches up the venue info to update the infowindow
-           this.state.venuesInfo.forEach(info => {
+           this.state.filteredVenues.forEach(info => {
              if(info.id === marker.id) {
                this.closeInfoWindow()
                this.setState({ activeMarkerInfo: info,
@@ -117,7 +123,7 @@ class App extends Component {
     onClickMarker = (marker) => {
       this.closeInfoWindow()
       this.animateMarker(marker)
-      this.state.venuesInfo.forEach(info => {
+      this.state.filteredVenues.forEach(info => {
         if(info.id === marker.id) {
           this.setState({ activeMarkerInfo : info })
         }
@@ -154,7 +160,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.filteredVenues)
+    console.log(this.state.activeMarkerInfo)
 
     // window.states = this.state;
     return (
@@ -199,9 +205,11 @@ class App extends Component {
             >
               <div className="infoWindow-content">
                 <h2>{this.state.activeMarkerInfo.name}</h2>
-                <p className="location-details">
-                <strong>Address:</strong> {this.state.activeMarkerInfo.address}<br/>
-                </p>
+                <div className="location-details">
+                  <strong>Address:</strong>
+                  <p>{this.state.activeMarkerInfo.address}</p>
+                </div>
+                <br/>
               </div>
             </InfoWindow>
           </Map>
