@@ -62,7 +62,7 @@ class App extends Component {
     userQuery = (query) => {
         let matchingVenues = this.state.venuesInfo.filter(venue => {
           const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
-          const userVenues = this.state.markers.fine(marker => marker.id === venue.id)
+          const userVenues = this.state.markers.find(marker => marker.id === venue.id)
           userVenues.setMap(null)
           userVenues.visibility = false
 
@@ -214,7 +214,7 @@ class App extends Component {
               id="search-location-text"
               type="search"
               placeholder="Enter your favorite area!"
-              // value={this.state.query}
+              value={this.state.query}
               onChange={(event) => this.userQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
