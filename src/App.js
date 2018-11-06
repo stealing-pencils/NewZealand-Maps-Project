@@ -41,7 +41,8 @@ class App extends Component {
                 name: venue.name,
                 id: venue.id,
                 address: venue.location.address,
-                pos: {"lat": venue.location.lat, "lng": venue.location.lng}
+                pos: {"lat": venue.location.lat, "lng": venue.location.lng},
+                visibility: true
               }
             })
             this.setState({venues, center, venuesInfo, filteredVenues: venuesInfo})
