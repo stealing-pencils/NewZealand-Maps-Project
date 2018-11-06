@@ -73,56 +73,12 @@ class App extends Component {
           }
           return queryMatch
         })
+        
         this.setState({
         filteredVenues : matchingVenues,
         query : query })
       }
 
-    // this.setState({ filteredVenues : matchingVenues })
-
-
-    //
-    // updateQuery = (query) => {
-    //   this.setState({ query : query })
-    //   this.state.venuesInfo.map(venue => {
-    //     if(venue.name.toLowerCase().includes(query.toLowerCase())) {
-    //       console.log(venue.name)
-    //       this.setState({ filteredVenues : venue.name })
-    //       // return venue.name
-    //     } else {
-    //       // this.setState({ filteredVenues : })
-    //       console.log("no match")
-    //     }
-    //     return venue
-    //   })
-    // }
-    //     // console.log(foundMatch)
-    //     const updateMarker = this.state.markers.find(marker => marker.id === venue.id)
-    //     if(foundMatch){
-    //       // this.closeInfoWindow()
-    //       this.setState({ activeMarker : venue })
-    //       this.setState({ showingInfoWindow : true })
-    //     } else {
-    //       this.setState({ activeMarker : {} })
-    //       this.closeInfoWindow()
-    //       // this.setState({ showingInfoWindow : false })
-    //     }
-    //     return updateMarker
-    //   })
-    // }
-
-    //   this.state.venuesInfo.map(venue => {
-    //     const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
-    //     const userQueryMarker = this.state.markers.find(marker => marker.id === venue.id)
-    //     if(queryMatch) {
-    //       console.log(venue)
-    //       this.logResultsListClick(venue)
-    //     } else {
-    //       console.log("no match")
-    //     }
-    //     return userQueryMarker
-    //   })
-    // }
 
 
     //

@@ -5,10 +5,22 @@ import './App.css';
 
 class ResultsList extends Component {
 
+  state = {
+    visibleVenue : []
+  }
+
+//   checkFilteredVenues = () => {
+//
+//     this.props.filteredVenues.forEach(venue => {
+//       if(venue.visibility === true ){
+//
+//         this.setState({ visbileVenue : venue })
+//         console.log(this.state.visibleVenue + "hello")
+//       }
+//   })
+// }
 
   render() {
-
-    // console.log(this.props.filteredVenues)
 
     return (
       <div className= 'list-body'>
@@ -20,16 +32,19 @@ class ResultsList extends Component {
           </button>
         </header>
         <ol className = "search-results-body">
-          {this.props.filteredVenues && this.props.filteredVenues.map((result, index) =>  {
-            if (result.visibility) {
-              return(<li
-            key = {index}
-            className = "list-item"
-            onClick = {() => this.props.logResultsListClick(result)}
-            >
-              <p>{result.name}</p>
-            </li>);
-            }
+
+          {this.props.filteredVenues && this.props.filteredVenues.map((result, index) => {
+
+
+               return <li
+                 key = {index}
+                 className = "list-item"
+                 onClick = {() => this.props.logResultsListClick(result)}
+                 >
+                  <p>{result.name}</p>
+                 </li>
+
+
           }
         )}
 
