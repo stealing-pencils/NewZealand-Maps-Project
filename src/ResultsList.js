@@ -30,7 +30,13 @@ class ResultsList extends Component {
 
                onClick = {() => this.props.logResultsListClick(result)}
                >
+               <header className = "venue-name">
                  <p>{result.name}</p>
+               </header>
+               <div className = "venue-address">
+                 <p>{result.formattedAddress[0]}</p>
+                 <p>{result.formattedAddress[1]}</p>
+               </div>
                 </li>
               }
           )}
