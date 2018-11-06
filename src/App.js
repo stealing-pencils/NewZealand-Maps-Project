@@ -44,7 +44,7 @@ class App extends Component {
                 pos: {"lat": venue.location.lat, "lng": venue.location.lng}
               }
             })
-            this.setState({venues, center, venuesInfo})
+            this.setState({venues, center, venuesInfo, filteredVenues: venuesInfo})
             this.addMarkers(this.state.venuesInfo)
           });
       }
@@ -55,34 +55,27 @@ class App extends Component {
           this.setState({map});
     }
 
-    inputQuery = (query) => {
-      this.setState({ query },_=>{
-        this.userQuery(query)
-      })
+    updateQuery = (query) => {
+      this.setState({query});
     }
 
     userQuery = (query) => {
-      if(this.state.query) {
         let matchingVenues = this.state.venuesInfo.filter(venue => {
           const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
-          this.state.markers.forEach(marker => {
-            if(marker.id === venue.id) {
-            }
-            if(!queryMatch) {
-              marker.setMap(null)
-              marker.visibility = false
-            } else {
-              marker.setMap(this.state.map)
-              marker.visiblity = true
-            }
-          })
+          const userVenues = this.state.markers.fine(marker => marker.id === venue.id)
+          userVenues.setMap(null)
+          userVenues.visibility = false
+
+          if(queryMatch){
+            userVenues.setMap(this.state.map)
+            userVenues.visiblity = true
+          }
           return queryMatch
         })
         this.setState({
         filteredVenues : matchingVenues,
         query : query })
-        console.log(this.state.filteredVenues)
-      }}
+      }
 
     // this.setState({ filteredVenues : matchingVenues })
 
@@ -131,8 +124,8 @@ class App extends Component {
     // }
 
 
-
-    // Takes details of click from ResultsList component
+    //
+    // // Takes details of click from ResultsList component
     logResultsListClick = (result) => {
        console.log(result)
        // maps over markers to find the correct marker
@@ -222,7 +215,7 @@ class App extends Component {
               type="search"
               placeholder="Enter your favorite area!"
               // value={this.state.query}
-              onChange={(event) => this.inputQuery(event.target.value)}
+              onChange={(event) => this.userQuery(event.target.value)}
               />
             <input id="search-location-button" type="button" value="Zoom"/>
           </div>

@@ -20,17 +20,19 @@ class ResultsList extends Component {
           </button>
         </header>
         <ol className = "search-results-body">
-          {this.props.venuesInfo && this.props.venuesInfo.map((result, index) => (
-
-            <li
+          {this.props.filteredVenues && this.props.filteredVenues.map((result, index) =>  {
+            if (result.visibility) {
+              return(<li
             key = {index}
             className = "list-item"
             onClick = {() => this.props.logResultsListClick(result)}
             >
               <p>{result.name}</p>
-            </li>
-          )
+            </li>);
+            }
+          }
         )}
+
         </ol>
       </div>
     )
