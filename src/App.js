@@ -197,7 +197,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.filteredVenues)
+    console.log(this.state.venues)
 
     // window.states = this.state;
     return (
