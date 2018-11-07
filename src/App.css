@@ -16,11 +16,18 @@
 }
 
 .App-header {
-  font-family: 'Averia Libre', cursive;
-  text-align: center;
   background-color: orange;
   grid-area: h;
-  font-size: 30px;
+}
+
+h1 {
+  font-family: 'Averia Libre', cursive;
+  text-align: center;
+  font-size: 50pt;
+  float:left;
+  display: inline-block;
+  margin: 20px;
+
 }
 
 .list-body {
@@ -69,16 +76,18 @@ h2 {
 }
 
 
-button {
+.button-toggle button{
   display:inline-block;
-  /* float: right; */
-  background-color: orange;
+  float: left;
+  background-color: blue;
   font-size: 10pt;
   border: none;
-  margin-right: 20%;
-  margin-top: 5%;
-  padding: 0% 5% 0% 5%;
-  height: 40px;
+  margin: 40px;
+
+  /* padding: 5% 5% 5% 5%; */
+  height: 50px;
+  width: 50px;
+  /* text-align: center; */
 }
 
 .results-title h2 {
@@ -123,6 +132,25 @@ button {
     position: relative;
   }
 }
+
+h1 {
+
+  float:left;
+  display: inline;
+  width: 49%;
+
+}
+
+button{
+  display: inline;
+  margin: 2%;
+  text-align: center;
+  /* padding: 5% 5% 5% 5%; */
+  /* height: 60px; */
+  /* width: 49%; */
+  /* text-align: center; */
+}
+
 
 /*   Search bar   */
 

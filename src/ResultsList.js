@@ -9,6 +9,7 @@ class ResultsList extends Component {
     visibleVenue : []
   }
 
+
   render() {
 
 
@@ -27,10 +28,7 @@ class ResultsList extends Component {
                 value={this.state.query}
                 onChange={(event) => this.props.userQuery(event.target.value)}
                 />
-                <button
-                className = 'toggle-results-list'>
-                Toggle
-                </button>
+
             </div>
 
           </div>

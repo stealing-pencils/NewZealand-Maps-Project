@@ -175,7 +175,17 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Eat New Zealand</h1>
+          <div className="header">
+            <h1>Eat New Zealand</h1>
+          </div>
+          <div className= "button-toggle">
+            <button
+            // className = 'toggle-results-list'
+            // onClick = {this.openResults_List()}
+            >
+            Toggle
+            </button>
+          </div>
         </div>
 
 
