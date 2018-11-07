@@ -48,13 +48,14 @@ h2 {
   margin: 0;
 }
 
-/* #search-location-button {
+.toggle-results-list {
   width: 10%;
+    float: right;
     background-color: #4CAF50;
     color: white;
     padding: 1.1% 0%;
     border: none;
-} */
+}
 
 input #search {
   font-size: 10pt;
