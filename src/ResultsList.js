@@ -29,6 +29,7 @@ class ResultsList extends Component {
           </div>
           <button
           className = 'toggle-results-list'>
+          <h4>Search</h4>
           </button>
         </div>
         <header className = 'results-header-body'>
