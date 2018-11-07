@@ -175,9 +175,9 @@ class App extends Component {
     return (
       <div className="App">
 
-        <h1 className="App-header">
+        <header className="App-header">
           Eat New Zealand
-        </h1>
+        </header>
         <div className = "search-bar-body">
           <div className = "search-bar-title">
             <h2>find what you fancy</h2>
@@ -216,7 +216,7 @@ class App extends Component {
               onClose = {this.closeInfoWindow}
             >
               <div className="infoWindow-content">
-                <h3>{this.state.activeMarkerInfo.name}</h3>
+                <h2>{this.state.activeMarkerInfo.name}</h2>
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
