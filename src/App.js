@@ -28,7 +28,8 @@ class App extends Component {
         "query": "coffee"
       },
       query: '',
-      filteredVenues: []
+      filteredVenues: [],
+      bounds: {}
     }
 
    componentDidMount() {
@@ -53,6 +54,8 @@ class App extends Component {
             this.addMarkers(this.state.filteredVenues)
           });
       }
+
+
 
     // initialize map
     mapReady = (props, map) => {
@@ -99,10 +102,12 @@ class App extends Component {
            this.state.filteredVenues.forEach(info => {
              if(info.id === marker.id) {
                this.closeInfoWindow()
+
                this.setState({ activeMarkerInfo: info,
                  showingInfoWindow: true,
                  activeMarker: marker})
                  this.animateMarker(marker)
+
              }
            })
          }
@@ -125,6 +130,7 @@ class App extends Component {
       this.animateMarker(marker)
       this.state.filteredVenues.forEach(info => {
         if(info.id === marker.id) {
+          this.setState({bounds : new this.props.google.maps.LatLngBounds().extend(info.pos)})
           this.setState({ activeMarkerInfo : info })
         }
       })
@@ -159,8 +165,11 @@ class App extends Component {
     }
 
 
+
   render() {
-    console.log(this.state.activeMarkerInfo)
+    console.log(this.state.bounds)
+    // console.log(this.state.activeMarker)
+    // console.log(this.state.filteredVenues)
 
     // window.states = this.state;
     return (
@@ -181,7 +190,6 @@ class App extends Component {
               value={this.state.query}
               onChange={(event) => this.userQuery(event.target.value)}
               />
-            <input id="search-location-button" type="button" value="Zoom"/>
           </div>
         </div>
 
@@ -192,10 +200,12 @@ class App extends Component {
           style={{width: '100%', height: '100%'}}
           className={'map'}
           zoom={13}
+          bounds={this.bounds}
           initialCenter={{
             lat: -36.848461,
             lng: 174.763336
           }}
+          // mapCenter={this.state..pos}
           onClick = {this.closeInfoWindow}
           >
             <InfoWindow
