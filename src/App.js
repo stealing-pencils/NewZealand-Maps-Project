@@ -63,16 +63,17 @@ class App extends Component {
           this.setState({map});
     }
 
-    // refactorAddress = () => {
-    //   this.state.venuesInfo.formattedAddress.map(addressLine => {
-    //     addressLine.toString()
-    //     return addressLine
-    //   })
-    // }
 
     updateQuery = (query) => {
       this.setState({query});
     }
+
+  //   toggleDrawer = () => {
+  //   // Toggle the value controlling whether the drawer is displayed
+  //   this.setState({
+  //     open: !this.state.open
+  //   });
+  // }
 
     userQuery = (query) => {
         let matchingVenues = this.state.venuesInfo.filter(venue => {
@@ -164,6 +165,10 @@ class App extends Component {
       this.setState({markers})
     }
 
+    toggleResults_List = () => {
+      console.log("you clicked me")
+    }
+
 
 
   render() {
@@ -181,7 +186,7 @@ class App extends Component {
           <div className= "button-toggle">
             <button
             // className = 'toggle-results-list'
-            // onClick = {this.openResults_List()}
+            onClick = {this.toggleResults_List()}
             >
             Toggle
             </button>
@@ -228,6 +233,7 @@ class App extends Component {
             {...this.state}
             logResultsListClick = {this.logResultsListClick}
             userQuery = {this.userQuery}
+            // toggleDrawer = {this.toggleDrawer}
           />
         </div>
         <footer className="App-footer">
