@@ -10,7 +10,7 @@
 
   grid-template-areas:
   "h h h h"
-  "s s s s"
+  "r r r r"
   "r r r r"
   "f f f f";
 }
@@ -90,7 +90,7 @@ ol {
     grid-template-rows: 130px 100px 1134px 100px;
     grid-template-areas:
     "h h h h"
-    "s m m m"
+    "r m m m"
     "r m m m"
     "f f f f";
   }
