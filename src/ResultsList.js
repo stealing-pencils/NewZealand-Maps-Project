@@ -15,22 +15,25 @@ class ResultsList extends Component {
     return (
       <div className= 'list-body'>
         <div className = "search-bar-body">
-          <div className = "search-bar-title">
-            <h2>find what you fancy</h2>
+          <div className = "search-bar-content">
+            <div className = "search-bar-title">
+              <h2>find what you fancy</h2>
+            </div>
+            <div className = 'search-field'>
+              <input
+                id="search-location-text"
+                type="search"
+                placeholder="Enter your favorite area!"
+                value={this.state.query}
+                onChange={(event) => this.props.userQuery(event.target.value)}
+                />
+                <button
+                className = 'toggle-results-list'>
+                Toggle
+                </button>
+            </div>
+
           </div>
-          <div className = 'search-field'>
-            <input
-              id="search-location-text"
-              type="search"
-              placeholder="Enter your favorite area!"
-              value={this.state.query}
-              onChange={(event) => this.props.userQuery(event.target.value)}
-              />
-          </div>
-          <button
-          className = 'toggle-results-list'>
-          <h4>Search</h4>
-          </button>
         </div>
         <header className = 'results-header-body'>
           <div className = 'results-title'>
