@@ -41,8 +41,6 @@ footer {
 .search-bar-body {
   padding: 1% 0% 2% 2%;
   background-color: lightblue;
-  grid-area: s;
-
 }
 
 h2 {
@@ -50,13 +48,13 @@ h2 {
   margin: 0;
 }
 
-#search-location-button {
+/* #search-location-button {
   width: 10%;
     background-color: #4CAF50;
     color: white;
     padding: 1.1% 0%;
     border: none;
-}
+} */
 
 input #search {
   font-size: 10pt;
@@ -104,15 +102,10 @@ ol {
 }
 
 /*   Search bar   */
-.search-bar-body {
-  grid-area: s;
-  padding: 1% 0% 2% 2%;
-}
 
-.search-bar-body h2 {
-  font-size: 14pt;
-  margin: 0;
-}
+
+/*   End search bar   */
+
 
 #search-location-button {
     width: 10%;
