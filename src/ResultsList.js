@@ -14,6 +14,20 @@ class ResultsList extends Component {
 
     return (
       <div className= 'list-body'>
+        <div className = "search-bar-body">
+          <div className = "search-bar-title">
+            <h2>find what you fancy</h2>
+          </div>
+          <div className = 'search-field'>
+            <input
+              id="search-location-text"
+              type="search"
+              placeholder="Enter your favorite area!"
+              value={this.state.query}
+              onChange={(event) => this.props.userQuery(event.target.value)}
+              />
+          </div>
+        </div>
         <header className = 'results-header-body'>
           <div className = 'results-title'>
             <h2>Search Results</h2>

@@ -177,20 +177,7 @@ class App extends Component {
         <div className="App-header">
           <h1>Eat New Zealand</h1>
         </div>
-        <div className = "search-bar-body">
-          <div className = "search-bar-title">
-            <h2>find what you fancy</h2>
-          </div>
-          <div className = 'search-field'>
-            <input
-              id="search-location-text"
-              type="search"
-              placeholder="Enter your favorite area!"
-              value={this.state.query}
-              onChange={(event) => this.userQuery(event.target.value)}
-              />
-          </div>
-        </div>
+
 
         <div className= 'map-body'>
           <Map
@@ -230,6 +217,7 @@ class App extends Component {
           <ResultsList
             {...this.state}
             logResultsListClick = {this.logResultsListClick}
+            userQuery = {this.userQuery}
           />
         </div>
         <footer className="App-footer">
