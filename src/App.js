@@ -174,10 +174,9 @@ class App extends Component {
     // window.states = this.state;
     return (
       <div className="App">
-
-        <header className="App-header">
-          Eat New Zealand
-        </header>
+        <div className="App-header">
+          <h1>Eat New Zealand</h1>
+        </div>
         <div className = "search-bar-body">
           <div className = "search-bar-title">
             <h2>find what you fancy</h2>
