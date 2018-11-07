@@ -195,6 +195,8 @@ class App extends Component {
 
         <div className= 'map-body'>
           <Map
+          role="application"
+          aria-label="map"
           onReady = {this.mapReady}
           google={this.props.google}
           style={{width: '100%', height: '100%'}}
