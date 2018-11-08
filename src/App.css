@@ -37,6 +37,13 @@ h1 {
   overflow:scroll;
 }
 
+.map-body {
+  visibility: visible;
+  background-color: pink;
+  grid-area: m;
+  position: relative;
+}
+
 
 footer {
   background-color: green;
