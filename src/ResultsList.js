@@ -26,7 +26,7 @@ class ResultsList extends Component {
                 <input
                   id="search-location-text"
                   type="search"
-                  placeholder="Enter your favorite area!"
+                  placeholder="Enter your favorite venue name"
                   value={this.state.query}
                   onChange={(event) => this.props.userQuery(event.target.value)}
                   />
