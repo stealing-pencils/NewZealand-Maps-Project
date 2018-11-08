@@ -1,10 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Neighborhood Map (React) Project [FEND]
 
-REMEMBER TO PUT SERVICE WORKER REGISTRATION IN README
+The purpose of this project was to built a single page application featuring a map of my neighborhood or a neighborhood I would like to visit. I chose Auckland, New Zealand, because my family live nearby and we might be moving there soon!  As New Zealanders take their coffee very seriously, the map displays favorite coffee spots in the city.
 
-## Available Scripts
-
-In the project directory, you can run:
+We were asked to add functionality to the map including highlighted locations, third-party data about those locations and various ways to browse the content.
 
 ### `npm start`
 
