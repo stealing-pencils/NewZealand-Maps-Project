@@ -5,11 +5,7 @@ import ResultsList from './ResultsList.js';
 import './App.css';
 
 
-
-
-
 class App extends Component {
-
 
     state = {
       markers: [],
