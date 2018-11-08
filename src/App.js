@@ -71,13 +71,6 @@ class App extends Component {
       this.setState({query});
     }
 
-  //   toggleDrawer = () => {
-  //   // Toggle the value controlling whether the drawer is displayed
-  //   this.setState({
-  //     open: !this.state.open
-  //   });
-  // }
-
     userQuery = (query) => {
         let matchingVenues = this.state.venuesInfo.filter(venue => {
           const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
@@ -123,7 +116,7 @@ class App extends Component {
       this.state.activeMarker &&
       this.setState({ showingInfoWindow: false, activeMarker: null})
     }
-
+    // clears all marker animation before setting animation for active marker
     animateMarker = (marker) => {
       this.state.markers.forEach(marker => marker.setAnimation(null))
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
@@ -132,17 +125,18 @@ class App extends Component {
     onClickMarker = (marker) => {
       this.closeInfoWindow()
       this.animateMarker(marker)
+
       this.state.filteredVenues.forEach(info => {
         if(info.id === marker.id) {
-          this.setState({bounds : new this.props.google.maps.LatLngBounds().extend(info.pos)})
+          // this.setState({bounds : new this.props.google.maps.LatLngBounds().extend(info.pos)})
           this.setState({ activeMarkerInfo : info })
         }
       })
       // updates information for infowindow
-      // console.log(this.state.activeMarkerInfo)
       this.setState({ showingInfoWindow: true, activeMarker: marker })
     }
 
+    // function to add all markers to map
     addMarkers = (venuesInfo) => {
       // check there are values coming from venuesInfo props
       if(!venuesInfo) {
@@ -167,12 +161,6 @@ class App extends Component {
       })
       this.setState({markers})
     }
-
-    toggleResults_List = (event) => {
-      console.log("you clicked me")
-      this.setState({ toggleList: false })
-    }
-
 
 
   render() {
