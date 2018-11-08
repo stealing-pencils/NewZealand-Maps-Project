@@ -4,41 +4,54 @@ The purpose of this project was to built a single page application featuring a m
 
 We were asked to add functionality to the map including highlighted locations, third-party data about those locations and various ways to browse the content.
 
-### `npm start`
+## The Challenge
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The neighborhood map application was complex and incorporated a variety of data points that could have easily have let it become unwieldy to manage. It incorporates a number of frameworks, libraries and APIs, which have to be successfully negotiated.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### To start the Application
 
-### `npm test`
+* [clone](https://github.com/kedevked/webinar-map-react) or [download](https://github.com/stealing-pencils/NewZealand-Maps-Project/archive/master.zip) this repository
+* using your terminal (or equivalent), cd into the directory that this application can be found in  
+* run `npm install` to install the project dependencies
+* start the application by inputting `npm start`
+* the App can be viewed in your preferred browser at `localhost:3000`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## The Application Includes
 
-### `npm run build`
+```bash
+├── CONTRIBUTING.md
+├── README.md - This file.
+├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with the app.
+├── package.json # npm package manager file.
+├── public
+│   ├── favicon.ico # React Icon, You may change if you wish.
+│   └── index.html # DO NOT MODIFY
+└── src
+    ├── App.css # Styles for the app.
+    ├── App.js # This is the root of your app. Includes much of the app code including links to all components to allow easy styling with CSS Grid. This is the home page for the App.  
+    |       |
+    |       |___ResultsList.js #Displays results sidebar for  app home page.
+    │
+    ├── App.test.js # Used for testing. Provided with Create React App.
+    ├── ApiIndex.js # A FourSquare API request for backend
+    │
+    |__ serviceWorker.js # To support the app's serviceworker
+    |  
+    ├── index.css # Global styles.
+    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributing
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This project was started from scratch, but the project rubric and testing came from Udacity.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Library used:
+* [google-maps-react] (https://www.npmjs.com/package/google-maps-react)
 
-### `npm run eject`
+# I used the help of:
+* Huge thank you to the Udacity community, particularly on Slack
+* [Neighborhood Map Walk-Thru by Forrest Walker  -  YouTube](https://www.youtube.com/playlist?list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP)
+* [Webinar: Neighborhood Map (P7) Oct-27 walk-thru with @DougBrown.ProjectCoach](https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be)
+* Troubleshooting assistance from StackOverflow and the Udacity Mentors and Community
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
