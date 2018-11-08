@@ -3,11 +3,6 @@ import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
-import mapFail from './mapFail.css';
-
-
-
-
 
 class App extends Component {
 
@@ -171,7 +166,19 @@ class App extends Component {
     }
 
 
-  render() {
+
+
+
+
+
+
+    render() {
+
+      !this.props.loaded &&
+      setTimeout(()=> {
+        return <div>Map failed to load, please check your
+        internet connection and try again</div>
+      }, 1001)
 
     return (
       <div className="App">
@@ -180,8 +187,6 @@ class App extends Component {
             <h1>Eat New Zealand</h1>
           </div>
         </div>
-
-
         <div className= 'map-body'>
           <Map
           role="application"
@@ -208,9 +213,14 @@ class App extends Component {
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
+                </div>
+                <div className="venue-url">
                   {this.state.activeMarkerInfo.url &&
                     <p>{this.state.activeMarkerInfo.url}</p>
                   }
+                </div>
+                <div className="Foursquare-attribute">
+                  <p>Venue information provided by foursquare.com</p>
                 </div>
                 <br/>
               </div>
@@ -219,11 +229,11 @@ class App extends Component {
         </div>
 
         <div className = "list-body">
-          { !this.props.toggleList ? <ResultsList
+          <ResultsList
             {...this.state}
             logResultsListClick = {this.logResultsListClick}
             userQuery = {this.userQuery}
-            /> : null }
+            />
 
         </div>
         <footer className="App-footer">
@@ -234,5 +244,5 @@ class App extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw",
-  LoadingContainer: mapFail})(App)
+  apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
+})(App)
