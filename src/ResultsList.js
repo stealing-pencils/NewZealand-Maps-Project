@@ -40,7 +40,6 @@ class ResultsList extends Component {
             </div>
           </header>
           <ol className = "search-results-body">
-
             {this.props.filteredVenues && this.props.filteredVenues.map((result, index) => {
                return result.address && <li
                  key = {index}

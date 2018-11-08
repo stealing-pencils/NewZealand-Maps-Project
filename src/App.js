@@ -114,18 +114,21 @@ class App extends Component {
       this.state.activeMarker &&
       this.setState({ showingInfoWindow: false, activeMarker: null})
     }
-    // clears all marker animation before setting animation for active marker
-    animateMarker = (marker) => {
+
+    getVenueDetails = (marker) => {
       const venue = this.state.filteredVenues.find(venue => venue.id === marker.id)
 
       SquareAPI.getVenueDetails(marker.id).then(res => {
         const newVenue = Object.assign(res.response.venue, venue);
-        this.setState({ activeMarkerInfo : Object.assign(this.state.activeMarkerInfo, newVenue)})
+        this.setState({ activeMarkerInfo : Object.assign(this.state.filteredVenues, newVenue)})
         // console.log(newVenue)
       })
+    }
+    // clears all marker animation before setting animation for active marker
+    animateMarker = (marker) => {
+      this.getVenueDetails(marker)
       this.state.markers.forEach(marker => marker.setAnimation(null))
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
-
     }
     // Opens infoWindow once marker is clicked
     onClickMarker = (marker) => {
@@ -171,7 +174,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.activeMarkerInfo)
+    console.log(this.state.activeMarkerInfo.bestPhoto)
 
     return (
       <div className="App">
@@ -208,7 +211,6 @@ class App extends Component {
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
-                  <p>{this.state.activeMarkerInfo.canonicalUrl}</p>
                 </div>
                 <br/>
               </div>
