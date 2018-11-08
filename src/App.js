@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow} from 'google-maps-react';
+import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import ReactDOM from 'react-dom';
 import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
@@ -54,7 +55,6 @@ class App extends Component {
        this.setState({venues, center, venuesInfo, filteredVenues : venuesInfo})
        this.addMarkers(this.state.filteredVenues)
      })
-
    }
 
 
@@ -144,20 +144,15 @@ class App extends Component {
     }
 
     addMarkers = (venuesInfo) => {
-      // console.log(venuesInfo)
-      // console.log(this.state.filteredVenues)
       // check there are values coming from venuesInfo props
       if(!venuesInfo) {
         return console.log("no venue info")
       }
       // removes any markers on the page
       this.state.markers.forEach(marker => marker.setMap(null))
-
-      // venuesInfo.forEach(hello => console.log(hello))
       // maps over markervenues to create instances for each marker and
       // separating them into an array which can be saved in the markers state
       let markers = venuesInfo.map((info, index) => {
-        console.log(info.pos)
         // create marker using google maps react
         let marker = new this.props.google.maps.Marker({
           position: info.pos,
@@ -181,14 +176,12 @@ class App extends Component {
 
 
   render() {
-
     console.log(this.state.bounds)
     // console.log(this.state.activeMarker)
     // console.log(this.state.filteredVenues)
 
     // window.states = this.state;
     return (
-
       <div className="App">
         <div className="App-header">
           <div className="header">
@@ -246,4 +239,6 @@ class App extends Component {
   }
 }
 
-export default App
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
+})(App)
