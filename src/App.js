@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
-import ReactDOM from 'react-dom';
+import {Map, InfoWindow} from 'google-maps-react';
+import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
 
 
-var foursquare = require('react-foursquare')({
-clientID: 'OVXN3KG3ITFHVC2XKVARXSTXTSHRLL0OVRIUQCQE53WMPOUO',
-clientSecret: 'DFKG33VIWQSY5ARPP0QNYVYWPGMDDFHHWML5MUBIE4W134OM'
-});
+
 
 
 class App extends Component {
@@ -29,31 +26,37 @@ class App extends Component {
       },
       query: '',
       filteredVenues: [],
-      bounds: {}
+      bounds: {},
+      toggleList: true
     }
 
    componentDidMount() {
-        foursquare.venues.getVenues(this.state.queryLocation)
-          .then(res=> {
-            const {venues} = res.response
-            const {center} = res.response.geocode.feature.geometry
-            const venuesInfo = venues.map(venue => {
-              if(venue.location.address) {
-                return {
-                  name: venue.name,
-                  id: venue.id,
-                  address: venue.location.address,
-                  formattedAddress: venue.location.formattedAddress,
-                  pos: {"lat": venue.location.lat, "lng": venue.location.lng},
-                  visibility: true
-                }
-              }
-              return venue
-            })
-            this.setState({venues, center, venuesInfo, filteredVenues: venuesInfo})
-            this.addMarkers(this.state.filteredVenues)
-          });
-      }
+     SquareAPI.search({
+       near: "Auckland, New Zealand",
+       query: "coffee",
+       limit: 10
+     }).then(results => {
+       const { venues } = results.response;
+       const { center } = results.response.geocode.feature.geometry;
+       const venuesInfo = venues.map(venue => {
+         if(venue.location.address) {
+           return {
+             name: venue.name,
+             id: venue.id,
+             address: venue.location.address,
+             formattedAddress: venue.location.formattedAddress,
+             pos: {"lat": venue.location.lat, "lng": venue.location.lng},
+             visibility: true
+           }
+         }
+         return venue
+       })
+       this.setState({venues, center, venuesInfo, filteredVenues : venuesInfo})
+       this.addMarkers(this.state.filteredVenues)
+     })
+
+   }
+
 
 
 
@@ -141,15 +144,20 @@ class App extends Component {
     }
 
     addMarkers = (venuesInfo) => {
+      // console.log(venuesInfo)
+      // console.log(this.state.filteredVenues)
       // check there are values coming from venuesInfo props
       if(!venuesInfo) {
         return console.log("no venue info")
       }
       // removes any markers on the page
       this.state.markers.forEach(marker => marker.setMap(null))
+
+      // venuesInfo.forEach(hello => console.log(hello))
       // maps over markervenues to create instances for each marker and
       // separating them into an array which can be saved in the markers state
       let markers = venuesInfo.map((info, index) => {
+        console.log(info.pos)
         // create marker using google maps react
         let marker = new this.props.google.maps.Marker({
           position: info.pos,
@@ -165,31 +173,26 @@ class App extends Component {
       this.setState({markers})
     }
 
-    toggleResults_List = () => {
+    toggleResults_List = (event) => {
       console.log("you clicked me")
+      this.setState({ toggleList: false })
     }
 
 
 
   render() {
+
     console.log(this.state.bounds)
     // console.log(this.state.activeMarker)
     // console.log(this.state.filteredVenues)
 
     // window.states = this.state;
     return (
+
       <div className="App">
         <div className="App-header">
           <div className="header">
             <h1>Eat New Zealand</h1>
-          </div>
-          <div className= "button-toggle">
-            <button
-            // className = 'toggle-results-list'
-            onClick = {this.toggleResults_List()}
-            >
-            Toggle
-            </button>
           </div>
         </div>
 
@@ -229,12 +232,12 @@ class App extends Component {
         </div>
 
         <div className = "list-body">
-          <ResultsList
+          { !this.props.toggleList ? <ResultsList
             {...this.state}
             logResultsListClick = {this.logResultsListClick}
             userQuery = {this.userQuery}
-            // toggleDrawer = {this.toggleDrawer}
-          />
+            /> : null }
+
         </div>
         <footer className="App-footer">
         </footer>
@@ -243,6 +246,4 @@ class App extends Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
-})(App)
+export default App

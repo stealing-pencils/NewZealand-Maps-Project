@@ -10,8 +10,8 @@
 
   grid-template-areas:
   "h h h h"
-  "r r r r"
-  "r r r r"
+  "r m m m"
+  "r m m m"
   "f f f f";
 }
 
@@ -24,8 +24,8 @@ h1 {
   font-family: 'Averia Libre', cursive;
   text-align: center;
   font-size: 50pt;
-  float:left;
-  display: inline-block;
+  /* float:left; */
+  /* display: inline-block; */
   margin: 20px;
 
 }
@@ -35,9 +35,6 @@ h1 {
   grid-area: r;
 }
 
-.map-body {
-  visibility: collapse;
-}
 
 footer {
   background-color: green;
@@ -113,17 +110,7 @@ h2 {
 
 
 @media only screen and (min-width: 1024px) {
-  .App {
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 130px 100px 1134px 100px;
-    grid-template-areas:
-    "h h h h"
-    "r m m m"
-    "r m m m"
-    "f f f f";
-  }
+
 
   .map-body {
     visibility: visible;
@@ -135,9 +122,10 @@ h2 {
 
 h1 {
 
+  text-align: center;
   float:left;
   display: inline;
-  width: 49%;
+  width: 50%;
 
 }
 
