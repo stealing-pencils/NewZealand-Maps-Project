@@ -46,7 +46,7 @@ export default class SquareAPI{
   static search(urlPrams){
     return Helper.simpleFetch("/venues/search", "GET", urlPrams)
   }
-  static venueDetails(VENUE_ID){
+  static getVenueDetails(VENUE_ID){
     return Helper.simpleFetch(`/venues/${VENUE_ID}`, "GET");
   }
   static getVenuePhotos(VENUE_ID) {

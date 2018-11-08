@@ -120,6 +120,13 @@ class App extends Component {
     animateMarker = (marker) => {
       this.state.markers.forEach(marker => marker.setAnimation(null))
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      const venue = this.state.filteredVenues.find(venue => venue.id === marker.id)
+
+      SquareAPI.getVenueDetails(marker.id).then(res => {
+        const newVenue = Object.assign(res.response.venue, venue);
+        this.setState({ filteredVenues : Object.assign(this.state.filteredVenues, newVenue)})
+        console.log(newVenue)
+      })
     }
     // Opens infoWindow once marker is clicked
     onClickMarker = (marker) => {
@@ -127,6 +134,7 @@ class App extends Component {
       this.animateMarker(marker)
 
       this.state.filteredVenues.forEach(info => {
+
         if(info.id === marker.id) {
           // this.setState({bounds : new this.props.google.maps.LatLngBounds().extend(info.pos)})
           this.setState({ activeMarkerInfo : info })
@@ -165,10 +173,7 @@ class App extends Component {
 
   render() {
     console.log(this.state.bounds)
-    // console.log(this.state.activeMarker)
-    // console.log(this.state.filteredVenues)
 
-    // window.states = this.state;
     return (
       <div className="App">
         <div className="App-header">
@@ -192,7 +197,6 @@ class App extends Component {
             lat: -36.848461,
             lng: 174.763336
           }}
-          // mapCenter={this.state..pos}
           onClick = {this.closeInfoWindow}
           >
             <InfoWindow
