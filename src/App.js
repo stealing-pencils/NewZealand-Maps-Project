@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
-import ReactDOM from 'react-dom';
 import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
@@ -35,7 +34,6 @@ class App extends Component {
      SquareAPI.search({
        near: "Auckland, New Zealand",
        query: "coffee",
-       limit: 10
      }).then(results => {
        const { venues } = results.response;
        const { center } = results.response.geocode.feature.geometry;
@@ -117,7 +115,6 @@ class App extends Component {
 
     getVenueDetails = (marker) => {
       const venue = this.state.filteredVenues.find(venue => venue.id === marker.id)
-
       SquareAPI.getVenueDetails(marker.id).then(res => {
         const newVenue = Object.assign(res.response.venue, venue);
         this.setState({ activeMarkerInfo : Object.assign(this.state.filteredVenues, newVenue)})
@@ -174,7 +171,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.activeMarkerInfo.bestPhoto)
+    console.log(this.state.activeMarkerInfo)
 
     return (
       <div className="App">
@@ -211,6 +208,9 @@ class App extends Component {
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
+                  {this.state.activeMarkerInfo.url &&
+                    <p>{this.state.activeMarkerInfo.url}</p>
+                  }
                 </div>
                 <br/>
               </div>
