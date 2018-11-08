@@ -3,6 +3,7 @@ import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
+import mapFail from './mapFail.css';
 
 
 
@@ -171,7 +172,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.activeMarkerInfo)
 
     return (
       <div className="App">
@@ -234,5 +234,5 @@ class App extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
-})(App)
+  apiKey: "AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw",
+  LoadingContainer: mapFail})(App)
