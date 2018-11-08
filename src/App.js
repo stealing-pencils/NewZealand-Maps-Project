@@ -180,8 +180,6 @@ class App extends Component {
             <h1>Eat New Zealand</h1>
           </div>
         </div>
-
-
         <div className= 'map-body'>
           <Map
           role="application"
@@ -208,9 +206,13 @@ class App extends Component {
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
+                </div>
+                <div className="venue-url">
                   {this.state.activeMarkerInfo.url &&
                     <p>{this.state.activeMarkerInfo.url}</p>
                   }
+                </div>
+                <div className="Foursquare-attribute">
                   <p>Venue information provided by foursquare.com</p>
                 </div>
                 <br/>
