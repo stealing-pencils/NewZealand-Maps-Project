@@ -16,7 +16,6 @@ class ResultsList extends Component {
 
 
     return (
-      // <Drawer>
         <div className= 'list-body'>
           <div className = "search-bar-body">
             <div className = "search-bar-content">
@@ -61,9 +60,6 @@ class ResultsList extends Component {
             )}
           </ol>
         </div>
-
-
-      // </Drawer>
     )
   }
 }

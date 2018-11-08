@@ -33,6 +33,7 @@ h1 {
 .list-body {
   background-color: tan;
   grid-area: r;
+  overflow:scroll;
 }
 
 
