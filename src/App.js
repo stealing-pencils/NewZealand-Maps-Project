@@ -4,8 +4,8 @@ import SquareAPI from './ApiIndex.js'
 import ResultsList from './ResultsList.js';
 import './App.css';
 
-
 class App extends Component {
+
 
     state = {
       markers: [],
@@ -165,9 +165,13 @@ class App extends Component {
       this.setState({markers})
     }
 
+    render() {
 
-  render() {
-    console.log(this.state.activeMarkerInfo)
+      !this.props.loaded &&
+      setTimeout(()=> {
+        return <div>Map failed to load, please check your
+        internet connection and try again</div>
+      }, 1001)
 
     return (
       <div className="App">
@@ -233,5 +237,5 @@ class App extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
-})(App)
+   apiKey: ("AIzaSyBJ39aLUnpQEi-Ewf6EIIKguFlX-z_SNbw")
+ })(App)
