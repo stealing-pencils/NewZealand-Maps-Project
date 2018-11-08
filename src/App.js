@@ -211,6 +211,7 @@ class App extends Component {
                   {this.state.activeMarkerInfo.url &&
                     <p>{this.state.activeMarkerInfo.url}</p>
                   }
+                  <p>Venue information provided by foursquare.com</p>
                 </div>
                 <br/>
               </div>
@@ -219,11 +220,11 @@ class App extends Component {
         </div>
 
         <div className = "list-body">
-          { !this.props.toggleList ? <ResultsList
+          <ResultsList
             {...this.state}
             logResultsListClick = {this.logResultsListClick}
             userQuery = {this.userQuery}
-            /> : null }
+            />
 
         </div>
         <footer className="App-footer">
