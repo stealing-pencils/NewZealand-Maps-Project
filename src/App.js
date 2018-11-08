@@ -58,8 +58,6 @@ class App extends Component {
    }
 
 
-
-
     // initialize map
     mapReady = (props, map) => {
           // Save the map reference in state and prepare the location markers
@@ -118,15 +116,16 @@ class App extends Component {
     }
     // clears all marker animation before setting animation for active marker
     animateMarker = (marker) => {
-      this.state.markers.forEach(marker => marker.setAnimation(null))
-      marker.setAnimation(window.google.maps.Animation.BOUNCE);
       const venue = this.state.filteredVenues.find(venue => venue.id === marker.id)
 
       SquareAPI.getVenueDetails(marker.id).then(res => {
         const newVenue = Object.assign(res.response.venue, venue);
-        this.setState({ filteredVenues : Object.assign(this.state.filteredVenues, newVenue)})
-        console.log(newVenue)
+        this.setState({ activeMarkerInfo : Object.assign(this.state.activeMarkerInfo, newVenue)})
+        // console.log(newVenue)
       })
+      this.state.markers.forEach(marker => marker.setAnimation(null))
+      marker.setAnimation(window.google.maps.Animation.BOUNCE);
+
     }
     // Opens infoWindow once marker is clicked
     onClickMarker = (marker) => {
@@ -172,7 +171,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.bounds)
+    console.log(this.state.activeMarkerInfo)
 
     return (
       <div className="App">
@@ -209,6 +208,7 @@ class App extends Component {
                 <div className="location-details">
                   <strong>Address:</strong>
                   <p>{this.state.activeMarkerInfo.address}</p>
+                  <p>{this.state.activeMarkerInfo.canonicalUrl}</p>
                 </div>
                 <br/>
               </div>
