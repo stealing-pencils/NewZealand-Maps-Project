@@ -50,7 +50,7 @@ This project was started from scratch, but the project rubric and testing came f
 
 # I used the help of:
 * Huge thank you to the Udacity community, particularly on Slack
-* [Neighborhood Map Walk-Thru by Forrest Walker  -  YouTube](https://www.youtube.com/playlist?list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP)
+* [Neighborhood Map Walk-Thru by Forrest Walker  -  YouTube](https://www.youtube.com/playlist?list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP) - most particularly for FourSquare API setup
 * [Webinar: Neighborhood Map (P7) Oct-27 walk-thru with @DougBrown.ProjectCoach](https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be)
 * Troubleshooting assistance from StackOverflow and the Udacity Mentors and Community
 
