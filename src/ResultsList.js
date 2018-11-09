@@ -20,7 +20,7 @@ class ResultsList extends Component {
           <div className = "search-bar-body">
             <div className = "search-bar-content">
               <div className = "search-bar-title">
-                <h2>find what you fancy</h2>
+                <h2>search for your favorite venue</h2>
               </div>
               <div className = 'search-field'>
                 <input
