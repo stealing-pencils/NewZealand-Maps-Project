@@ -16,12 +16,13 @@
 }
 
 .App-header {
-  background-color: orange;
+  background-color: #343633;
   grid-area: h;
 }
 
 h1 {
   font-family: 'Averia Libre', cursive;
+  color: white;
   /* text-align: center; */
   font-size: 30pt;
   padding-left: 2%;
@@ -32,7 +33,7 @@ h1 {
 }
 
 .list-body {
-  background-color: tan;
+  background-color: #93867F;
   grid-area: r;
   overflow:scroll;
 }
@@ -46,14 +47,14 @@ h1 {
 
 
 footer {
-  background-color: green;
+  background-color: #343633;
   grid-area: f;
 }
 
 /*   Search bar   */
 .search-bar-body {
   padding: 5%;
-  background-color: lightblue;
+  background-color: #5CC8FF;
 }
 
 h2 {
@@ -96,6 +97,7 @@ ol {
 }
 
 .list-item {
+  background-color: #CEBDB3;
   font-weight: bold;
   list-style: none;
   margin: 4%;
