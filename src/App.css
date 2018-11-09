@@ -58,13 +58,14 @@ footer {
 
 h2 {
   font-size: 10pt;
-  padding: 8%;
+  padding: 8% 8% 0% 4%;
+
 
 }
 
 .search-bar-content {
   font-size: 10pt;
-  padding: 2%;
+  padding: 1%;
   margin-left: 2%;
   height: 5%;
 }
@@ -72,10 +73,10 @@ h2 {
 #search-location-text {
   display: inline-block;
   font-size: 8pt;
-  padding: 8px;
+  padding: 5%;
   /* line-height: 40pt; */
-  margin-right: 5%;
-  margin-bottom: 10%;
+  margin: 0% 8% 2% 4%;
+
   width: 60px;
   border: none;
   /* height: 10px; */
