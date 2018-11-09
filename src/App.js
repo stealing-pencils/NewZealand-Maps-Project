@@ -179,11 +179,20 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <header>
-            <h1>Coffee Cup, New Zealand</h1>
+            <h1 tabindex="0">Coffee Cup, New Zealand</h1>
           </header>
         </div>
-        <div className= 'map-body'>
+        <div className = "list-body">
+          <ResultsList
+            {...this.state}
+            logResultsListClick = {this.logResultsListClick}
+            userQuery = {this.userQuery}
+            />
+        </div>  
+        <div
+          className="map-body">
           <Map
+          tabindex="0"
           role="application"
           aria-label="map"
           onReady = {this.mapReady}
@@ -222,16 +231,9 @@ class App extends Component {
             </InfoWindow>
           </Map>
         </div>
-
-        <div className = "list-body">
-          <ResultsList
-            {...this.state}
-            logResultsListClick = {this.logResultsListClick}
-            userQuery = {this.userQuery}
-            />
-
-        </div>
-        <footer className="App-footer">
+        <footer
+        className="App-footer"
+        tabindex="0">
         </footer>
       </div>
     );
