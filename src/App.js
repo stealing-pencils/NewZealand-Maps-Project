@@ -63,10 +63,12 @@ class App extends Component {
       this.setState({query});
     }
 
+    // filters venues that match user input and matches them to marker
     userQuery = (query) => {
         let matchingVenues = this.state.venuesInfo.filter(venue => {
           const queryMatch = venue.name.toLowerCase().includes(query.toLowerCase())
           const userVenues = this.state.markers.find(marker => marker.id === venue.id)
+
           userVenues.setMap(null)
           userVenues.visibility = false
 
@@ -109,12 +111,12 @@ class App extends Component {
       this.setState({ showingInfoWindow: false, activeMarker: null})
     }
 
+    // calls for extra venue details using FourSquare
     getVenueDetails = (marker) => {
       const venue = this.state.filteredVenues.find(venue => venue.id === marker.id)
       SquareAPI.getVenueDetails(marker.id).then(res => {
         const newVenue = Object.assign(res.response.venue, venue);
         this.setState({ activeMarkerInfo : Object.assign(this.state.filteredVenues, newVenue)})
-        // console.log(newVenue)
       })
     }
     // clears all marker animation before setting animation for active marker
@@ -166,7 +168,7 @@ class App extends Component {
     }
 
     render() {
-
+      // checks that props are loaded and returns error message if they're not
       !this.props.loaded &&
       setTimeout(()=> {
         return <div>Map failed to load, please check your
