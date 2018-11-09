@@ -177,7 +177,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <div className="header">
-            <h1>Eat New Zealand</h1>
+            <h1>Coffee Cup, New Zealand</h1>
           </div>
         </div>
         <div className= 'map-body'>

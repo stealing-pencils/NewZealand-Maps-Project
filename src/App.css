@@ -131,15 +131,15 @@ ol {
     }
 
     h2 {
-      font-size: 15pt;
-      margin: 0;
+      font-size: 30pt;
+      /* padding: 2%; */
+      margin-left: 5%;
     }
 
     .search-bar-content {
       font-size: 20pt;
       padding: 2%;
-      margin-left: 2%;
-      height: 20%;
+      margin-left: 5%;
     }
 
 
