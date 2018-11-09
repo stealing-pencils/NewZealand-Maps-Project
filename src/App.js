@@ -178,9 +178,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <div className="header">
+          <header>
             <h1>Coffee Cup, New Zealand</h1>
-          </div>
+          </header>
         </div>
         <div className= 'map-body'>
           <Map
